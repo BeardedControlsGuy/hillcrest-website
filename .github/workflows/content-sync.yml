@@ -1,0 +1,32 @@
+name: Content sync
+
+on:
+  schedule:
+    - cron: '15 5,11,17,23 * * *' # 4x daily UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Sync YouTube sermons
+        run: node scripts/sync-youtube.mjs
+      - name: Sync Planning Center events
+        env:
+          PCO_APP_ID: ${{ secrets.PCO_APP_ID }}
+          PCO_SECRET: ${{ secrets.PCO_SECRET }}
+        run: node scripts/sync-events.mjs
+      - name: Commit changes
+        run: |
+          git config user.name "hillcrest-sync-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add src/data/sermons-videos.json src/data/events-synced.json
+          git diff --cached --quiet || git commit -m "chore: sync sermons & events"
+          git push

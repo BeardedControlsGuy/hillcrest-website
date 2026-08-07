@@ -1,0 +1,13 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  light?: boolean;
+}
+const { eyebrow, title, light = false } = Astro.props;
+---
+<div class="reveal">
+  {eyebrow && <p class:list={["text-sm font-bold uppercase tracking-[0.2em]", light ? "text-gold" : "text-sky"]}>{eyebrow}</p>}
+  <h2 class:list={["mt-2 font-display text-3xl md:text-4xl font-extrabold tracking-tight", light ? "text-white" : "text-navy"]}>{title}</h2>
+  <div class="mt-4 h-1 w-16 rounded bg-gold"></div>
+</div>

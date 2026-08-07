@@ -1,0 +1,13 @@
+{
+  "sunday": [
+    { "name": "Morning Worship", "time": "8:30 AM" },
+    { "name": "Sunday School", "time": "10:00 AM" },
+    { "name": "Morning Worship", "time": "11:00 AM" },
+    { "name": "Evening Worship", "time": "6:00 PM" }
+  ],
+  "wednesday": [
+    { "name": "AWANA (school year)", "time": "6:45 PM" },
+    { "name": "Youth Midweek", "time": "6:45 PM" },
+    { "name": "Prayer Meeting / Bible Study", "time": "7:00 PM" }
+  ]
+}

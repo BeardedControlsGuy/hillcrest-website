@@ -1,0 +1,73 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import VideoEmbed from '../components/VideoEmbed.astro';
+import settings from '../data/settings.json';
+import feed from '../data/sermons-videos.json';
+
+const [latest, ...rest] = feed.videos;
+const fmt = (iso: string) =>
+  new Date(iso).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+---
+<Layout title="Sermons | Hillcrest Baptist Church">
+  <section class="bg-navy-deep text-white">
+    <div class="mx-auto max-w-5xl px-4 sm:px-6 py-16 md:py-20 text-center">
+      <p class="text-sm font-bold uppercase tracking-[0.2em] text-gold">Sermons</p>
+      <h1 class="mt-2 font-display text-4xl md:text-5xl font-extrabold">Watch a Service</h1>
+      <p class="mx-auto mt-4 max-w-2xl text-white/80">
+        Services are streamed and archived on our
+        <a href={settings.youtube_url} target="_blank" rel="noopener" class="font-bold text-sky-bright hover:underline">YouTube channel</a>.
+        This page updates automatically as new services are posted.
+      </p>
+    </div>
+  </section>
+
+  {latest && (
+    <section class="bg-white">
+      <div class="mx-auto max-w-5xl px-4 sm:px-6 py-14">
+        <SectionHeading eyebrow="Most Recent" title={latest.title} />
+        <p class="mt-2 text-sm text-slate-500">{fmt(latest.published)}</p>
+        <div class="mt-6">
+          <VideoEmbed id={latest.id} title={latest.title} />
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="bg-cream">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 py-14">
+      <SectionHeading eyebrow="Archive" title="Recent Services" />
+      <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {rest.map((v) => (
+          <a href={`https://www.youtube.com/watch?v=${v.id}`} target="_blank" rel="noopener"
+            class="reveal group overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-black/5 hover:shadow-xl transition-shadow">
+            <div class="relative overflow-hidden">
+              <img src={`https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`} alt={v.title}
+                class="aspect-video w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+              <div class="absolute inset-0 grid place-items-center">
+                <div class="rounded-full bg-ink/60 p-4 transition-colors group-hover:bg-sky/90">
+                  <svg class="h-6 w-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+              </div>
+            </div>
+            <div class="p-5">
+              <h3 class="font-display font-bold text-navy group-hover:text-sky transition-colors">{v.title}</h3>
+              <p class="mt-1 text-sm text-slate-500">{fmt(v.published)}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+      <p class="mt-10 text-center">
+        <a href={settings.youtube_url + '/videos'} target="_blank" rel="noopener"
+          class="inline-block rounded-full bg-navy px-7 py-3 font-bold text-white hover:bg-sky transition-colors">Full Archive on YouTube</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-white">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 py-14 text-center">
+      <h2 class="font-display text-2xl font-extrabold text-navy">Hillcrest on the Radio</h2>
+      <p class="mt-4 text-slate-700 leading-relaxed">{settings.radio_text}</p>
+    </div>
+  </section>
+</Layout>

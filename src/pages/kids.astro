@@ -1,0 +1,71 @@
+---
+import MinistryPage from '../layouts/MinistryPage.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import { Image } from 'astro:assets';
+import hero from '../assets/img/uploads/kids_main_photo.jpg';
+import s1 from '../assets/img/uploads/kids_section_one_photo.jpg';
+import awana from '../assets/img/uploads/kids_section_two_photo.jpg';
+import cc from '../assets/img/uploads/kids_section_three_photo.jpg';
+---
+<MinistryPage
+  title="Children's Ministry"
+  heroSubtitle="Parent's Night Out, Children's Camp each summer, AWANA and more — we would LOVE for your children to be a part of our ministry!"
+  heroImage={hero}
+  sectionTitle="Love, Learn, Live & Stay in the Word"
+  sectionImage={s1}
+>
+  <p class="italic text-navy font-semibold">
+    "But Jesus said, 'Let the little children come to Me, and do not forbid them; for of such is the
+    kingdom of heaven.'" — Matthew 19:14
+  </p>
+  <p>
+    The vision for children that come through our doors is that they LOVE the Word, LEARN the Word,
+    LIVE the Word and STAY in the Word their entire life! We want children to be excited about coming
+    to church and to be on fire for Jesus! We also want to partner with parents in teaching their
+    children about Jesus — we want our families to be Deuteronomy families as it says in the Word.
+  </p>
+  <p class="italic">
+    Deuteronomy 6:6-7: "And these words that I command you today shall be on your heart. You shall
+    teach them diligently to your children, and shall talk of them when you sit in your house, and
+    when you walk by the way, and when you lie down, and when you rise."
+  </p>
+
+  <Fragment slot="extra">
+    <section class="bg-cream">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 py-16 grid gap-10 md:grid-cols-2 items-center">
+        <div class="reveal overflow-hidden rounded-2xl shadow-lg md:order-1">
+          <Image src={awana} alt="AWANA at Hillcrest" widths={[600, 1200]} sizes="(min-width: 768px) 50vw, 100vw" class="w-full object-cover" loading="lazy" />
+        </div>
+        <div class="reveal md:order-2">
+          <SectionHeading eyebrow="Wednesdays 6:45–8:00 PM" title="AWANA" />
+          <div class="mt-6 space-y-4 text-slate-700 leading-relaxed">
+            <p>
+              A great night where kids can learn about the Bible and memorize scripture in a fun and
+              exciting way. "AWANA" stands for "Approved Workmen Are Not Ashamed," based on
+              2 Timothy 2:15.
+            </p>
+            <p>
+              AWANA meets each Wednesday night during the school year from 6:45 PM to 8:00 PM.
+              Everyone is welcome! <strong>Puggles</strong> (2-year-olds), <strong>Cubbies</strong> (3
+              &amp; 4-year-olds), <strong>Sparks</strong> (Kindergarten–2nd grade), and
+              <strong>Truth &amp; Training</strong> (3rd–6th grade).
+            </p>
+            <a href="https://www.awana.org/" target="_blank" rel="noopener" class="inline-block rounded-full bg-navy px-6 py-2.5 font-bold text-white hover:bg-sky transition-colors">Learn More About AWANA</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="relative isolate overflow-hidden text-white">
+      <Image src={cc} alt="" class="absolute inset-0 -z-10 h-full w-full object-cover" widths={[768, 1600]} sizes="100vw" loading="lazy" />
+      <div class="absolute inset-0 -z-10 bg-navy-deep/80"></div>
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 py-20 text-center">
+        <h2 class="font-display text-3xl font-extrabold">Children's Church</h2>
+        <p class="mt-4 text-white/85 leading-relaxed">
+          Every Sunday morning, children from Kindergarten through 2nd grade meet to worship and learn
+          more about Jesus together. This meets during our congregational worship hour starting at 11 AM.
+        </p>
+      </div>
+    </section>
+  </Fragment>
+</MinistryPage>

@@ -1,0 +1,122 @@
+media:
+  input: public/uploads
+  output: /uploads
+
+content:
+  - name: announcements
+    label: Homepage Announcements
+    type: file
+    path: src/data/announcements.json
+    format: json
+    fields:
+      - name: items
+        label: Announcements
+        type: object
+        list: true
+        fields:
+          - { name: active, label: "Show on homepage", type: boolean, default: true }
+          - { name: title, label: Title, type: string }
+          - { name: subtitle, label: "Subtitle (date/time line)", type: string }
+          - { name: body, label: Text, type: text }
+          - { name: image, label: Image, type: image }
+          - { name: button_label, label: "Button label", type: string }
+          - { name: button_url, label: "Button link (Church Center registration links work great here)", type: string }
+
+  - name: featured_events
+    label: Featured Events
+    type: file
+    path: src/data/featured-events.json
+    format: json
+    fields:
+      - name: items
+        label: Events
+        type: object
+        list: true
+        fields:
+          - { name: title, label: Event name, type: string }
+          - { name: date, label: "Date & time (as text, e.g. 'Friday, Sept 12 · 6:00 PM')", type: string }
+          - { name: location, label: Location, type: string }
+          - { name: description, label: Description, type: text }
+          - { name: image, label: Image, type: image }
+          - { name: register_url, label: "Registration link (from Church Center)", type: string }
+
+  - name: service_times
+    label: Worship Times
+    type: file
+    path: src/data/service-times.json
+    format: json
+    fields:
+      - name: sunday
+        label: Sunday
+        type: object
+        list: true
+        fields:
+          - { name: name, label: Service, type: string }
+          - { name: time, label: Time, type: string }
+      - name: wednesday
+        label: Wednesday
+        type: object
+        list: true
+        fields:
+          - { name: name, label: Activity, type: string }
+          - { name: time, label: Time, type: string }
+
+  - name: staff
+    label: Staff
+    type: file
+    path: src/data/staff.json
+    format: json
+    fields:
+      - name: members
+        label: Staff members
+        type: object
+        list: true
+        fields:
+          - { name: name, label: Name, type: string }
+          - { name: title, label: Title, type: string }
+          - { name: email, label: Email, type: string }
+          - { name: photo, label: Photo, type: image }
+          - { name: bio, label: Bio, type: text }
+
+  - name: careers
+    label: Careers
+    type: file
+    path: src/data/careers.json
+    format: json
+    fields:
+      - { name: intro, label: Intro text, type: text }
+      - name: positions
+        label: Open positions
+        type: object
+        list: true
+        fields:
+          - { name: title, label: Position title, type: string }
+          - { name: description, label: Description, type: text }
+          - { name: apply_url, label: "Apply link (optional — leave blank to use email)", type: string }
+
+  - name: settings
+    label: Site Settings
+    type: file
+    path: src/data/settings.json
+    format: json
+    fields:
+      - { name: church_name, label: Church name, type: string }
+      - { name: tagline, label: Tagline, type: string }
+      - { name: address_line1, label: Address line 1, type: string }
+      - { name: address_line2, label: Address line 2, type: string }
+      - { name: phone, label: Phone, type: string }
+      - { name: fax, label: Fax, type: string }
+      - { name: email, label: Email, type: string }
+      - { name: facebook_url, label: Facebook, type: string }
+      - { name: instagram_url, label: Instagram, type: string }
+      - { name: youtube_url, label: YouTube channel, type: string }
+      - { name: church_center_url, label: Church Center URL, type: string }
+      - { name: giving_url, label: Giving URL, type: string }
+      - { name: registrations_url, label: Registrations URL, type: string }
+      - { name: connection_card_url, label: Connection card URL, type: string }
+      - { name: welcome_video_id, label: "Welcome video (YouTube video ID)", type: string }
+      - { name: apple_podcasts_url, label: Apple Podcasts, type: string }
+      - { name: podcast_rss_url, label: Podcast RSS, type: string }
+      - { name: spotify_podcasts_url, label: "Spotify (optional)", type: string }
+      - { name: radio_text, label: Radio broadcast text, type: text }
+      - { name: contact_form_endpoint, label: "Contact form endpoint (optional)", type: string }

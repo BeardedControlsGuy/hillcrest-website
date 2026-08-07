@@ -1,0 +1,17 @@
+---
+interface Props {
+  id: string;
+  title: string;
+}
+const { id, title } = Astro.props;
+---
+<div class="overflow-hidden rounded-xl bg-ink shadow-lg">
+  <iframe
+    class="aspect-video w-full"
+    src={`https://www.youtube-nocookie.com/embed/${id}?rel=0`}
+    title={title}
+    loading="lazy"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen
+  ></iframe>
+</div>

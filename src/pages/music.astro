@@ -1,0 +1,33 @@
+---
+import MinistryPage from '../layouts/MinistryPage.astro';
+import hero from '../assets/img/uploads/music_main_photo.jpg';
+import s1 from '../assets/img/uploads/music_section_one_photo.jpg';
+
+const gallery = Object.values(
+  import.meta.glob('../assets/img/uploads/music_gallery_*.jpg', { eager: true, import: 'default' })
+) as ImageMetadata[];
+---
+<MinistryPage
+  title="Music Ministry"
+  heroSubtitle={'"O come, let us sing unto the LORD: let us make a joyful noise to the rock of our salvation." — Psalm 95:1'}
+  heroImage={hero}
+  sectionTitle="Our Purpose"
+  sectionImage={s1}
+  gallery={gallery}
+>
+  <p>
+    The purpose of the music ministry at Hillcrest Baptist Church is to glorify the Lord in all that
+    we do. Our choir and band lead our congregation in worship that lifts and praises the name of our
+    Heavenly Father with a mixture of old and new hymns and worship songs.
+  </p>
+  <p>
+    Our goal is to always sing and play with the power and anointing of the Holy Spirit — to "enter
+    His courts with praise" and usher in a manifestation of the Holy Spirit every time we meet.
+  </p>
+  <p>
+    The Hillcrest Choir is filled with encouraging, supportive, dedicated church members serving God
+    during the worship service. We are always looking for new members to join us! We rehearse
+    <strong>Sundays at 5 PM</strong> and <strong>Wednesdays after the service</strong>. Stop by the
+    choir room or see one of our Music Ministry leaders for more information.
+  </p>
+</MinistryPage>

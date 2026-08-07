@@ -1,0 +1,69 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import settings from '../data/settings.json';
+---
+<Layout title="Contact Us | Hillcrest Baptist Church">
+  <section class="bg-navy-deep text-white">
+    <div class="mx-auto max-w-5xl px-4 sm:px-6 py-16 md:py-20 text-center">
+      <p class="text-sm font-bold uppercase tracking-[0.2em] text-gold">Get in Touch</p>
+      <h1 class="mt-2 font-display text-4xl md:text-5xl font-extrabold">Contact Hillcrest</h1>
+      <p class="mx-auto mt-4 max-w-2xl text-white/80">
+        We would love to hear from you. Please reach out by email or call our church office —
+        we look forward to ministering to you.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-white">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 py-16 grid gap-10 md:grid-cols-2 items-start">
+      <div class="reveal space-y-6">
+        <SectionHeading eyebrow="Church Office" title="Reach Us" />
+        <address class="not-italic text-slate-700 leading-relaxed">
+          <strong class="text-navy">{settings.church_name}</strong><br />
+          {settings.address_line1}<br />
+          {settings.address_line2}
+        </address>
+        <ul class="space-y-2 text-slate-700">
+          <li>Tel: <a href="tel:+16154445923" class="font-semibold text-sky hover:underline">{settings.phone}</a></li>
+          <li>Fax: {settings.fax}</li>
+          <li>Email: <a href={`mailto:${settings.email}`} class="font-semibold text-sky hover:underline">{settings.email}</a></li>
+        </ul>
+        {settings.contact_form_endpoint ? (
+          <form method="POST" action={settings.contact_form_endpoint} class="space-y-4 rounded-2xl bg-cream p-6 ring-1 ring-black/5">
+            <div>
+              <label for="name" class="block text-sm font-bold text-navy">Name</label>
+              <input id="name" name="name" required class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2" />
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-bold text-navy">Email</label>
+              <input id="email" name="email" type="email" required class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2" />
+            </div>
+            <div>
+              <label for="message" class="block text-sm font-bold text-navy">Message</label>
+              <textarea id="message" name="message" rows="5" required class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2"></textarea>
+            </div>
+            <button type="submit" class="rounded-full bg-navy px-7 py-2.5 font-bold text-white hover:bg-sky transition-colors">Send</button>
+          </form>
+        ) : (
+          <div class="rounded-2xl bg-cream p-6 ring-1 ring-black/5">
+            <p class="text-slate-700">
+              New to Hillcrest, or want us to follow up with you?
+              Fill out our <a href={settings.connection_card_url} target="_blank" rel="noopener" class="font-bold text-sky hover:underline">Connection Card</a>
+              and someone from our team will reach out.
+            </p>
+          </div>
+        )}
+      </div>
+      <div class="reveal overflow-hidden rounded-2xl shadow-lg">
+        <iframe
+          title="Map to Hillcrest Baptist Church"
+          src="https://www.google.com/maps?q=Hillcrest+Baptist+Church,+621+Hartsville+Pike,+Lebanon,+TN+37087&output=embed"
+          class="h-[28rem] w-full border-0"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,85 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import { Image } from 'astro:assets';
+import hero from '../assets/img/uploads/about_main_photo.jpg';
+import s1 from '../assets/img/uploads/about_section_one_photo.jpg';
+import s2 from '../assets/img/uploads/about_section_two_photo.jpg';
+import s3 from '../assets/img/uploads/about_section_three_photo.jpg';
+---
+<Layout title="About Hillcrest | Hillcrest Baptist Church">
+  <PageHero
+    title="About Hillcrest"
+    subtitle="Thank you for visiting our website. We hope that you find everything you are looking for and we hope you make plans to visit our church soon."
+    image={hero}
+  />
+
+  <section class="bg-white">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 py-16 md:py-20 grid gap-10 md:grid-cols-2 items-center">
+      <div class="reveal">
+        <SectionHeading eyebrow="What We Believe" title="Our Beliefs" />
+        <div class="mt-6 space-y-4 text-slate-700 leading-relaxed">
+          <p>We believe that the Bible is the infallible, incorruptible, undeniable word of God.</p>
+          <p>There is only one living and true God, one God who is revealed in three distinct persons: God the Father, God the Son, and God the Holy Spirit.</p>
+          <p>We believe that all have sinned and need a Savior.</p>
+          <p>We believe in only one way of salvation — by grace through faith in the sacrificial atoning death of the sinless Son of God, Jesus Christ, who was raised from the dead and is alive today, seated at the right hand of God, awaiting the time of His return.</p>
+          <p>As part of the Southern Baptist Convention we support the beliefs of the Baptist Faith and Message.</p>
+          <a href="https://bfm.sbc.net/" target="_blank" rel="noopener" class="inline-block rounded-full bg-navy px-6 py-2.5 font-bold text-white hover:bg-sky transition-colors">Baptist Faith &amp; Message</a>
+        </div>
+      </div>
+      <div class="reveal space-y-4">
+        <div class="overflow-hidden rounded-2xl shadow-lg">
+          <Image src={s1} alt="Worship at Hillcrest" widths={[600, 1200]} sizes="(min-width: 768px) 50vw, 100vw" class="w-full object-cover" loading="lazy" />
+        </div>
+        <div class="overflow-hidden rounded-2xl shadow-lg">
+          <Image src={s2} alt="Hillcrest Baptist Church" widths={[600, 1200]} sizes="(min-width: 768px) 50vw, 100vw" class="w-full object-cover" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-cream">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 py-16 md:py-20 text-center">
+      <SectionHeading eyebrow="Why We're Here" title="Our Mission" />
+      <div class="mt-6 space-y-4 text-slate-700 leading-relaxed text-left">
+        <p>
+          At Hillcrest Baptist Church, we seek to, above all else, not be "conformed to the pattern of
+          this world, but be transformed by the renewing of our minds…" (Romans 12:2a). At HBC, you
+          can count on hearing biblical preaching and Christ-exalting worship that will challenge you,
+          bless you and point you to the Savior on Sunday mornings, Sunday nights and Wednesday nights!
+        </p>
+        <p>
+          We have amazing preschool, children's and youth ministries at our church that all focus on
+          teaching the gospel of Jesus. For our adults, we have ministries for men, women and senior
+          adults. If you are looking for a church that believes ALL the Bible, stands firmly upon it
+          and preaches it without apology, Hillcrest is the place for you. Won't you come and join us
+          as we all prepare to fly away when He calls!
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="relative isolate overflow-hidden text-white">
+    <Image src={s3} alt="" class="absolute inset-0 -z-10 h-full w-full object-cover" widths={[768, 1600]} sizes="100vw" loading="lazy" />
+    <div class="absolute inset-0 -z-10 bg-ink/80"></div>
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 py-20 md:py-28">
+      <SectionHeading eyebrow="Since 1956" title="Our History" light />
+      <div class="mt-6 space-y-4 text-white/85 leading-relaxed">
+        <p>
+          Hillcrest Baptist Church was birthed via a tent revival meeting held here on the hill in
+          1956. It was in that meeting that 65 souls were saved and many of our charter members were
+          birthed into the Kingdom of God. Since then, HBC has come a long way. Today, HBC rests on
+          over 30 acres of property and has completed many building projects. Through it all, the good
+          and bad, HBC has never lost its vision of Reaching, Teaching, and Preaching (Acts 5:42).
+        </p>
+        <p>
+          We have said it for a long time, "Need GOD? He's Here!" because we believe you can find Him
+          here! To date, our Lord has blessed and grown us to over 2,700 in membership and we baptize
+          new believers almost every Sunday. Our worship center is filled with hungry hearts every
+          week. So if you want the real thing, HBC is for you!
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>

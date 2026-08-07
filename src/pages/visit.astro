@@ -1,0 +1,75 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import ChurchCenterPromo from '../components/ChurchCenterPromo.astro';
+import { Image } from 'astro:assets';
+import settings from '../data/settings.json';
+import hero from '../assets/img/uploads/plan_main_photo.jpg';
+import s1 from '../assets/img/uploads/plan_section_one_photo.jpg';
+import s2 from '../assets/img/uploads/plan_section_two_photo.jpg';
+import s3 from '../assets/img/uploads/plan_section_three_photo.jpg';
+import s4 from '../assets/img/uploads/plan_section_four_photo.jpg';
+import s5 from '../assets/img/uploads/plan_section_five_photo.jpg';
+import s6 from '../assets/img/uploads/plan_section_six_photo.jpg';
+
+const sections = [
+  {
+    title: 'When Should I Arrive?',
+    img: s1,
+    body: "We have two worship services in the sanctuary at 8:30 AM and 11:00 AM. Sunday mornings we offer Sunday School for all ages at 10:00 AM. Classes for children are in a secure setting (check-in/check-out) with trained personnel. There is a Preschool Department for newborns through preschool (5-year-olds) and a Children's Worship experience for Kindergarten through 2nd grade during sanctuary worship.\n\nSunday evenings we have worship in the main sanctuary at 6:00 PM.\n\nWednesday evenings have various activities taking place on campus. Our children and student ministries meet in their environments for AWANA and Youth Worship at 6:45 PM. Our adults attend Bible study and prayer in the main sanctuary at 7:00 PM.",
+  },
+  {
+    title: 'What Do I Wear?',
+    img: s2,
+    body: "There is no structured dress code at HBC. A few wear ties — not all, just a few. Most are dressed in modest casual. We want you to wear what makes you feel comfortable. We just want you here, because you belong here.",
+  },
+  {
+    title: 'What About Child Care?',
+    img: s3,
+    body: "There is a large, spacious nursery located in our E-Center, upstairs from the main hallway of the sanctuary. This environment is for newborns through preschool.\n\nThere is also a check-in system in place so parents and guardians can be assured of their child's safety. This is offered during Sunday School and worship times on Sunday morning, Sunday evening, and on Wednesdays.",
+  },
+  {
+    title: 'What Are Services Like?',
+    img: s4,
+    body: "Our musical style is blended while being upbeat and lively. We have a variety of different musical genres — you will hear hymns, southern gospel, praise and worship, and even contemporary. We seek to worship Jesus in spirit and in truth. We don't want to just sing about Him, we want to sing directly to Him. He is in this place!",
+  },
+  {
+    title: 'Where Do I Park?',
+    img: s5,
+    body: "There are large parking areas on the west side and east side of the campus. Designated handicap and visitor parking spaces are located at the front side of the parking lot near the front of the sanctuary, with additional parking at the rear of the building.\n\nParking attendants are available if you need assistance.",
+  },
+  {
+    title: 'Who Will I Meet?',
+    img: s6,
+    body: 'Our congregation generally reflects all demographics. Our philosophy is "Come one, come all." The doors of HBC swing on welcome hinges. Every age group is well represented, and members come from all backgrounds and economic levels. The common denominator in our gatherings is a strong sense of love for one another.\n\nIt is an honor for us to have you visit as our guest. If there is any way we can minister to you, please reach out to one of our staff members — we are here to help you any way we can.',
+  },
+];
+---
+<Layout title="Plan Your Visit | Hillcrest Baptist Church">
+  <PageHero
+    title="Plan Your Visit"
+    subtitle="We are so excited you are planning to visit us at Hillcrest — it truly is an honor to have you join us as our guest! We are located at 621 Hartsville Pike in Lebanon, Tennessee. Here's what to expect when you arrive to worship with us."
+    image={hero}
+  >
+    <a href={settings.connection_card_url} target="_blank" rel="noopener" class="mt-8 inline-block rounded-full bg-sky px-7 py-3 font-bold hover:bg-sky-bright transition-colors">Guest Connection Card</a>
+  </PageHero>
+
+  <section class="bg-white">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 py-16 md:py-20 space-y-16">
+      {sections.map((s, i) => (
+        <div class:list={["reveal grid gap-8 md:grid-cols-2 items-center", i % 2 === 1 && "md:[&>*:first-child]:order-2"]}>
+          <div class="overflow-hidden rounded-2xl shadow-lg">
+            <Image src={s.img} alt={s.title} widths={[600, 1200]} sizes="(min-width: 768px) 50vw, 100vw" class="aspect-[3/2] w-full object-cover" loading="lazy" />
+          </div>
+          <div>
+            <h2 class="font-display text-2xl md:text-3xl font-extrabold text-navy">{s.title}</h2>
+            <div class="mt-2 h-1 w-14 rounded bg-gold"></div>
+            <p class="mt-5 whitespace-pre-line text-slate-700 leading-relaxed">{s.body}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <ChurchCenterPromo />
+</Layout>

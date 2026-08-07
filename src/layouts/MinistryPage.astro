@@ -1,0 +1,54 @@
+---
+import Layout from './Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import Gallery from '../components/Gallery.astro';
+import { Image } from 'astro:assets';
+
+interface Props {
+  title: string;
+  pageTitle?: string;
+  heroSubtitle?: string;
+  heroImage?: ImageMetadata;
+  sectionEyebrow?: string;
+  sectionTitle: string;
+  sectionImage?: ImageMetadata;
+  gallery?: ImageMetadata[];
+}
+const {
+  title, pageTitle, heroSubtitle, heroImage,
+  sectionEyebrow = 'Ministries', sectionTitle, sectionImage, gallery = [],
+} = Astro.props;
+---
+<Layout title={pageTitle ?? `${title} | Hillcrest Baptist Church`}>
+  <PageHero title={title} subtitle={heroSubtitle} image={heroImage} />
+
+  <section class="bg-white">
+    <div class:list={["mx-auto max-w-7xl px-4 sm:px-6 py-16 md:py-20 grid gap-10 items-start", sectionImage && "md:grid-cols-2"]}>
+      <div class="reveal">
+        <SectionHeading eyebrow={sectionEyebrow} title={sectionTitle} />
+        <div class="mt-6 space-y-4 text-slate-700 leading-relaxed [&_strong]:text-navy">
+          <slot />
+        </div>
+      </div>
+      {sectionImage && (
+        <div class="reveal overflow-hidden rounded-2xl shadow-lg">
+          <Image src={sectionImage} alt={title} widths={[600, 1200]} sizes="(min-width: 768px) 50vw, 100vw" class="w-full object-cover" loading="lazy" />
+        </div>
+      )}
+    </div>
+  </section>
+
+  <slot name="extra" />
+
+  {gallery.length > 0 && (
+    <section class="bg-cream">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 py-16">
+        <SectionHeading eyebrow="Photos" title={`${title} Gallery`} />
+        <div class="mt-8">
+          <Gallery images={gallery} alt={title} />
+        </div>
+      </div>
+    </section>
+  )}
+</Layout>

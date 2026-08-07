@@ -1,0 +1,27 @@
+# Legacy .php URLs from the old site
+/index.php            /           301
+/visit.php            /visit      301
+/about.php            /about      301
+/staff.php            /staff      301
+/music.php            /music      301
+/students.php         /students   301
+/men.php              /men        301
+/women.php            /women      301
+/kids.php             /kids       301
+/preschool.php        /preschool  301
+/seniors.php          /seniors    301
+/missions.php         /missions   301
+/sermons.php          /sermons    301
+/podcasts.php         /podcasts   301
+/give.php             /give       301
+/events.php           /events     301
+/contact.php          /contact    301
+/careers/*            /careers    301
+/signup/*             /events     301
+/staff/senior_pastor.php       /staff  301
+/staff/evangelism_pastor.php   /staff  301
+/staff/minister_worship.php    /staff  301
+/staff/student_pastor.php      /staff  301
+/staff/minister_operations.php /staff  301
+/staff/children_director.php   /staff  301
+/staff/preschool_director.php  /staff  301

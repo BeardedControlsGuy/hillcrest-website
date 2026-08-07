@@ -1,0 +1,37 @@
+---
+import Layout from '../layouts/Layout.astro';
+import settings from '../data/settings.json';
+
+const platforms = [
+  { name: 'Apple Podcasts', href: settings.apple_podcasts_url, desc: 'Subscribe on iPhone, iPad, or Mac' },
+  ...(settings.spotify_podcasts_url ? [{ name: 'Spotify', href: settings.spotify_podcasts_url, desc: 'Listen on Spotify' }] : []),
+  { name: 'RSS Feed', href: settings.podcast_rss_url, desc: 'Use any podcast app that accepts an RSS link' },
+].filter((p) => p.href);
+---
+<Layout title="Podcasts | Hillcrest Baptist Church">
+  <section class="bg-navy-deep text-white">
+    <div class="mx-auto max-w-5xl px-4 sm:px-6 py-16 md:py-20 text-center">
+      <p class="text-sm font-bold uppercase tracking-[0.2em] text-gold">Sermons</p>
+      <h1 class="mt-2 font-display text-4xl md:text-5xl font-extrabold">HBC Podcasts</h1>
+      <p class="mx-auto mt-4 max-w-2xl text-white/80">
+        Listen to Hillcrest Baptist Church sermons wherever you love to listen to your podcasts.
+        Select a platform below and subscribe to be notified anytime Hillcrest uploads a new sermon.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-white">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 py-16 grid gap-6 sm:grid-cols-2">
+      {platforms.map((p) => (
+        <a href={p.href} target="_blank" rel="noopener"
+          class="reveal rounded-2xl bg-cream p-8 ring-1 ring-black/5 shadow-sm hover:shadow-xl transition-shadow text-center">
+          <h2 class="font-display text-xl font-bold text-navy">{p.name}</h2>
+          <p class="mt-2 text-sm text-slate-600">{p.desc}</p>
+        </a>
+      ))}
+    </div>
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 pb-16 text-center">
+      <p class="text-slate-700">Prefer video? <a href="/sermons" class="font-bold text-sky hover:underline">Watch services here</a> — or tune in on the radio: {settings.radio_text}</p>
+    </div>
+  </section>
+</Layout>

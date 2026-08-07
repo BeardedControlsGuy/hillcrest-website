@@ -1,0 +1,28 @@
+---
+import MinistryPage from '../layouts/MinistryPage.astro';
+import hero from '../assets/img/uploads/missions_main_photo.jpg';
+import s1 from '../assets/img/uploads/missions_section_one_photo.jpg';
+
+const gallery = Object.values(
+  import.meta.glob('../assets/img/uploads/missions_gallery_*.jpg', { eager: true, import: 'default' })
+) as ImageMetadata[];
+---
+<MinistryPage
+  title="Missions Ministry"
+  heroSubtitle={'"Go ye therefore, and teach all nations, baptizing them in the name of the Father, and of the Son, and of the Holy Ghost!"'}
+  heroImage={hero}
+  sectionTitle="Into All the World"
+  sectionImage={s1}
+  gallery={gallery}
+>
+  <p>
+    Hillcrest Baptist Church is proudly partnered with several local and foreign mission
+    organizations. God commands us in Mark 16:15 to "go into all the world and preach the gospel,"
+    and it is our goal at Hillcrest to follow through with that command.
+  </p>
+  <p>
+    Hillcrest designates a good portion of the yearly budget to be spent on local and foreign
+    missions. We encourage the church to be a mission-minded body of believers — to give and to pray
+    for local and foreign mission opportunities.
+  </p>
+</MinistryPage>

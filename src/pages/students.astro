@@ -1,0 +1,64 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import Gallery from '../components/Gallery.astro';
+import { Image } from 'astro:assets';
+import poster from '../assets/img/uploads/students_video_poster.jpg';
+import s1 from '../assets/img/uploads/students_section_one_photo.jpg';
+
+const gallery = Object.values(
+  import.meta.glob('../assets/img/uploads/students_gallery_*.jpg', { eager: true, import: 'default' })
+) as ImageMetadata[];
+---
+<Layout title="Student Ministry | Hillcrest Baptist Church">
+  <section class="relative isolate overflow-hidden bg-ink text-white">
+    <video
+      class="absolute inset-0 -z-10 h-full w-full object-cover opacity-60"
+      autoplay muted loop playsinline
+      poster={poster.src}
+      src="/video/hillcrest_youth.mp4"
+    ></video>
+    <div class="absolute inset-0 -z-10 bg-gradient-to-b from-ink/70 via-transparent to-ink/85"></div>
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 py-28 md:py-40 text-center">
+      <h1 class="font-display text-4xl md:text-6xl font-extrabold tracking-tight">Student Ministry</h1>
+      <p class="mx-auto mt-6 max-w-2xl text-lg text-white/85 leading-relaxed italic">
+        "Let no man despise thy youth; but be thou an example of the believers, in word, in
+        conversation, in charity, in spirit, in faith, in purity." — 1 Timothy 4:12
+      </p>
+      <a href="#hbc-students" class="mt-8 inline-block rounded-full bg-sky px-7 py-3 font-bold hover:bg-sky-bright transition-colors">HBC Students</a>
+    </div>
+  </section>
+
+  <section id="hbc-students" class="bg-white">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 py-16 md:py-20 grid gap-10 md:grid-cols-2 items-center">
+      <div class="reveal">
+        <SectionHeading eyebrow="Wednesdays at 6:45 PM" title="HBC Students" />
+        <div class="mt-6 space-y-4 text-slate-700 leading-relaxed">
+          <p>
+            Our student ministry is a vital part of our church body and its future growth. Our desire
+            is to provide an atmosphere and opportunity for our students to grow closer to Christ
+            through Sunday School, Discipleship Training on Sunday evening, as well as Youth Worship
+            on Wednesday nights.
+          </p>
+          <p>
+            Our motive is to be active in our community and surrounding area as we show those around
+            us the love of Jesus Christ. Join us Wednesdays at 6:45 PM for games, coffee, worship, and
+            a Bible message designed just for students.
+          </p>
+        </div>
+      </div>
+      <div class="reveal overflow-hidden rounded-2xl shadow-lg">
+        <Image src={s1} alt="HBC Students" widths={[600, 1200]} sizes="(min-width: 768px) 50vw, 100vw" class="w-full object-cover" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-cream">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 py-16">
+      <SectionHeading eyebrow="Photos" title="Student Ministry Gallery" />
+      <div class="mt-8">
+        <Gallery images={gallery} alt="Student Ministry" />
+      </div>
+    </div>
+  </section>
+</Layout>

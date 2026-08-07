@@ -1,0 +1,36 @@
+---
+import MinistryPage from '../layouts/MinistryPage.astro';
+import hero from '../assets/img/uploads/women_main_photo.jpg';
+import s1 from '../assets/img/uploads/hbc_womens_ministry.jpg';
+
+const gallery = Object.values(
+  import.meta.glob('../assets/img/uploads/women_gallery_*.jpg', { eager: true, import: 'default' })
+) as ImageMetadata[];
+---
+<MinistryPage
+  title="Women's Ministry"
+  heroSubtitle={'"The older women likewise, that they be reverent in behavior... that they admonish the young women to love their husbands, to love their children." — Titus 2:3-4'}
+  heroImage={hero}
+  sectionTitle="Develop · Mentor · Connect"
+  sectionImage={s1}
+  gallery={gallery}
+>
+  <p>
+    <strong>Develop.</strong> The purpose of our ministry is to help build up and develop the lives of
+    the women in our church and community — those who have just graduated high school all the way
+    through to the mature woman. We develop each other by lifting one another up, preparing each
+    other for what the world may throw at us, and mentoring in the faith.
+  </p>
+  <p>
+    <strong>Mentor.</strong> Our vision comes from Titus 2:3-4 — wanting our more mature women in
+    Christ to help teach the younger women on their proper behavior of holiness and to be teachers of
+    good things. Through example, we teach the younger women how to love their husbands and their
+    children, and how to rely on God's timing.
+  </p>
+  <p>
+    <strong>Connect.</strong> By coming together during scheduled times of fellowship and in everyday
+    life — living so people see Christ in you. Events include Simulcasts, Bible studies, women's
+    retreats, and craft times. When we come together we lift up our Lord in all things, with speakers,
+    worship, prayer, and studies.
+  </p>
+</MinistryPage>

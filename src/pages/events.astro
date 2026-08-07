@@ -1,0 +1,91 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import ChurchCenterPromo from '../components/ChurchCenterPromo.astro';
+import settings from '../data/settings.json';
+import featured from '../data/featured-events.json';
+import synced from '../data/events-synced.json';
+
+const fmtRange = (starts?: string, ends?: string) => {
+  if (!starts) return '';
+  const opts: Intl.DateTimeFormatOptions = { weekday: 'short', month: 'long', day: 'numeric', year: 'numeric' };
+  const s = new Date(starts).toLocaleDateString('en-US', opts);
+  if (!ends) return s;
+  const e = new Date(ends).toLocaleDateString('en-US', opts);
+  return s === e ? s : `${s} – ${e}`;
+};
+const upcoming = synced.events.filter((e) => e.register_url);
+---
+<Layout title="Events | Hillcrest Baptist Church">
+  <section class="bg-navy-deep text-white">
+    <div class="mx-auto max-w-5xl px-4 sm:px-6 py-16 md:py-20 text-center">
+      <p class="text-sm font-bold uppercase tracking-[0.2em] text-gold">Get Involved</p>
+      <h1 class="mt-2 font-display text-4xl md:text-5xl font-extrabold">Hillcrest Events</h1>
+      <p class="mx-auto mt-4 max-w-2xl text-white/80">
+        Hillcrest offers a variety of events designed to help you connect, grow, and serve. Sign-ups
+        happen in Church Center — tap an event to register.
+      </p>
+      <a href={settings.registrations_url} target="_blank" rel="noopener"
+        class="mt-8 inline-block rounded-full bg-sky px-7 py-3 font-bold hover:bg-sky-bright transition-colors">All Sign-Ups in Church Center</a>
+    </div>
+  </section>
+
+  {featured.items.length > 0 && (
+    <section class="bg-cream">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 py-16 space-y-12">
+        <SectionHeading eyebrow="Don't Miss" title="Featured Events" />
+        {featured.items.map((ev, i) => (
+          <div class:list={["reveal grid gap-8 md:grid-cols-2 items-center", i % 2 === 1 && "md:[&>*:first-child]:order-2"]}>
+            {ev.image && (
+              <div class="overflow-hidden rounded-2xl shadow-lg">
+                <img src={ev.image} alt={ev.title} class="w-full object-cover" loading="lazy" />
+              </div>
+            )}
+            <div>
+              <h3 class="font-display text-2xl md:text-3xl font-extrabold text-navy">{ev.title}</h3>
+              {ev.date && <p class="mt-1 font-semibold text-sky">{ev.date}{ev.location ? ` · ${ev.location}` : ''}</p>}
+              <p class="mt-4 whitespace-pre-line text-slate-700 leading-relaxed">{ev.description}</p>
+              {ev.register_url && (
+                <a href={ev.register_url} target="_blank" rel="noopener"
+                  class="mt-6 inline-block rounded-full bg-navy px-6 py-2.5 font-bold text-white hover:bg-sky transition-colors">Register</a>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <section class="bg-white">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 py-16">
+      <SectionHeading eyebrow="Sign Up" title="Upcoming Events" />
+      {upcoming.length === 0 ? (
+        <div class="mt-8 rounded-2xl bg-cream p-8 ring-1 ring-black/5">
+          <p class="text-slate-700">
+            Every event with open registration is listed in Church Center — camps, clubs, conferences,
+            trips, and more.
+          </p>
+          <a href={settings.registrations_url} target="_blank" rel="noopener"
+            class="mt-5 inline-block rounded-full bg-navy px-6 py-2.5 font-bold text-white hover:bg-sky transition-colors">Browse &amp; Sign Up</a>
+        </div>
+      ) : (
+        <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {upcoming.map((ev) => (
+            <a href={ev.register_url} target="_blank" rel="noopener"
+              class="reveal group overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-black/5 hover:shadow-xl transition-shadow flex flex-col">
+              {ev.image && <img src={ev.image} alt={ev.name} class="aspect-[3/2] w-full object-cover" loading="lazy" />}
+              <div class="p-6 flex-1 flex flex-col">
+                <h3 class="font-display text-lg font-bold text-navy group-hover:text-sky transition-colors">{ev.name}</h3>
+                <p class="mt-1 text-sm font-semibold text-sky">{fmtRange(ev.starts_at, ev.ends_at)}</p>
+                {ev.location && <p class="mt-1 text-sm text-slate-500">{ev.location}</p>}
+                <p class="mt-auto pt-4 text-sm font-bold text-gold">Register →</p>
+              </div>
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+
+  <ChurchCenterPromo />
+</Layout>

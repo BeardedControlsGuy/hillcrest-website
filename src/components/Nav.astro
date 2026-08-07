@@ -1,0 +1,105 @@
+---
+import settings from '../data/settings.json';
+
+const menu = [
+  { label: 'Home', href: '/' },
+  {
+    label: 'About',
+    children: [
+      { label: 'Plan Your Visit', href: '/visit' },
+      { label: 'About Hillcrest', href: '/about' },
+      { label: 'Staff', href: '/staff' },
+    ],
+  },
+  {
+    label: 'Ministries',
+    children: [
+      { label: 'Music', href: '/music' },
+      { label: 'Students', href: '/students' },
+      { label: "Men's", href: '/men' },
+      { label: "Women's", href: '/women' },
+      { label: "Children's", href: '/kids' },
+      { label: 'Preschool', href: '/preschool' },
+      { label: 'Seniors', href: '/seniors' },
+      { label: 'Missions', href: '/missions' },
+    ],
+  },
+  {
+    label: 'Sermons',
+    children: [
+      { label: 'Videos', href: '/sermons' },
+      { label: 'Podcasts', href: '/podcasts' },
+    ],
+  },
+  { label: 'Events', href: '/events' },
+  { label: 'Careers', href: '/careers' },
+  { label: 'Contact', href: '/contact' },
+];
+---
+<header class="fixed inset-x-0 top-0 z-50 bg-ink/90 backdrop-blur border-b border-white/10">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6">
+    <div class="flex h-16 items-center justify-between">
+      <a href="/" class="flex items-center gap-3">
+        <img src="/images/hbc_logo_white.png" alt="Hillcrest Baptist Church — Lebanon, TN" class="h-9 w-auto" />
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-1" aria-label="Main">
+        {menu.map((item) =>
+          item.children ? (
+            <div class="relative group">
+              <button class="px-3 py-2 text-sm font-semibold tracking-wide text-white/90 hover:text-white inline-flex items-center gap-1" aria-haspopup="true">
+                {item.label}
+                <svg class="h-3 w-3 opacity-70" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </button>
+              <div class="absolute left-0 top-full pt-1 hidden group-hover:block group-focus-within:block">
+                <div class="min-w-44 rounded-lg bg-navy-deep shadow-xl ring-1 ring-white/10 py-2">
+                  {item.children.map((c) => (
+                    <a href={c.href} class="block px-4 py-2 text-sm text-white/85 hover:bg-white/10 hover:text-white">{c.label}</a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ) : (
+            <a href={item.href} class="px-3 py-2 text-sm font-semibold tracking-wide text-white/90 hover:text-white">{item.label}</a>
+          )
+        )}
+        <a href={settings.giving_url} target="_blank" rel="noopener" class="ml-2 rounded-full bg-sky px-4 py-2 text-sm font-bold text-white hover:bg-sky-bright transition-colors">Give</a>
+      </nav>
+
+      <button id="nav-toggle" class="lg:hidden p-2 text-white" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="hidden lg:hidden max-h-[calc(100vh-4rem)] overflow-y-auto border-t border-white/10 bg-ink px-4 pb-6">
+    {menu.map((item) =>
+      item.children ? (
+        <details class="border-b border-white/10">
+          <summary class="cursor-pointer list-none py-3 text-sm font-semibold text-white/90 flex items-center justify-between">
+            {item.label}
+            <svg class="h-3 w-3 opacity-70" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </summary>
+          <div class="pb-2">
+            {item.children.map((c) => (
+              <a href={c.href} class="block py-2 pl-4 text-sm text-white/75 hover:text-white">{c.label}</a>
+            ))}
+          </div>
+        </details>
+      ) : (
+        <a href={item.href} class="block border-b border-white/10 py-3 text-sm font-semibold text-white/90 hover:text-white">{item.label}</a>
+      )
+    )}
+    <a href={settings.giving_url} target="_blank" rel="noopener" class="mt-4 block rounded-full bg-sky px-4 py-2.5 text-center text-sm font-bold text-white">Give Online</a>
+  </div>
+</header>
+<div class="h-16"></div>
+
+<script>
+  const toggle = document.getElementById('nav-toggle');
+  const menu = document.getElementById('mobile-menu');
+  toggle?.addEventListener('click', () => {
+    const open = menu?.classList.toggle('hidden') === false;
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+</script>

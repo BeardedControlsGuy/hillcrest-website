@@ -1,0 +1,39 @@
+---
+import Layout from '../layouts/Layout.astro';
+import settings from '../data/settings.json';
+---
+<Layout title="Give Online | Hillcrest Baptist Church">
+  <section class="bg-navy-deep text-white">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 py-16 md:py-24 text-center">
+      <p class="text-sm font-bold uppercase tracking-[0.2em] text-gold">Give</p>
+      <h1 class="mt-2 font-display text-4xl md:text-5xl font-extrabold">Give Online</h1>
+      <p class="mx-auto mt-6 max-w-3xl text-white/80 italic leading-relaxed">
+        "Bring ye all the tithes into the storehouse, that there may be meat in mine house, and prove
+        me now herewith, saith the Lord of hosts, if I will not open you the windows of heaven, and
+        pour you out a blessing, that there shall not be room enough to receive it." — Malachi 3:10
+      </p>
+      <a href={settings.giving_url} target="_blank" rel="noopener"
+        class="mt-10 inline-block rounded-full bg-sky px-10 py-4 text-lg font-bold hover:bg-sky-bright transition-colors">Give Now</a>
+      <p class="mt-4 text-sm text-white/60">Giving opens securely in Church Center.</p>
+    </div>
+  </section>
+
+  <section class="bg-white">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 py-16 space-y-6 text-slate-700 leading-relaxed">
+      <h2 class="font-display text-2xl font-extrabold text-navy">Simple and Safe</h2>
+      <p>
+        Giving to Hillcrest Baptist Church is simple and safe. If you would like to give your tithe or
+        offering online, please know we value the safety of your personal information. This method of
+        giving is PCI compliant and meets the highest standards of online security.
+      </p>
+      <div class="rounded-2xl bg-cream p-6 ring-1 ring-black/5">
+        <h3 class="font-display font-bold text-navy">A few tips:</h3>
+        <ul class="mt-3 list-disc pl-6 space-y-2 text-sm">
+          <li>If you would like to cover the small processing fee for using your debit/credit card, select the <strong>Cover Fees</strong> checkbox before submitting your gift.</li>
+          <li>To set up a secure account for future giving, select <strong>Remember Me</strong> below your gift amount and create a password and PIN. Keep them in a secure location.</li>
+          <li>Consider setting up a <strong>recurring gift</strong> to avoid entering your information every time.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</Layout>

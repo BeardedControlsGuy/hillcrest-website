@@ -1,0 +1,17 @@
+{
+  "name": "hillcrest-website",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "sync:youtube": "node scripts/sync-youtube.mjs",
+    "sync:events": "node scripts/sync-events.mjs"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.11",
+    "astro": "^5.12.8",
+    "tailwindcss": "^4.1.11"
+  }
+}

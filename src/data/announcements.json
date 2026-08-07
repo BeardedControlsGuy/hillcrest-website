@@ -1,0 +1,22 @@
+{
+  "items": [
+    {
+      "active": true,
+      "title": "Awana Clubs",
+      "subtitle": "Awana Clubs are Back!",
+      "body": "Join us as Awana kicks off on Wednesday, August 5, 2026, at 6:50 PM in the Jubilee Center! Awana is open to children ages 2 through 6th grade and is a fun, Christ-centered program where kids learn God's Word, build lasting friendships, and grow in their faith.\n\nClick the \"Register\" button below to sign up your child. We look forward to seeing your family!",
+      "image": "/uploads/home_section_one_graphic.jpg",
+      "button_label": "Register Here",
+      "button_url": "https://hillcrestbaptisttn.churchcenter.com/registrations/events/3474248"
+    },
+    {
+      "active": true,
+      "title": "Youth Midweek",
+      "subtitle": "Wednesdays at 6:45 PM",
+      "body": "Looking for a place to connect, grow, and have fun? Join us every Wednesday at 6:45 PM for an exciting night of games, coffee, worship, and a Bible message designed just for students. Come hang out with friends, meet new people, and grow in your faith in a welcoming environment. We can't wait to see you this Wednesday!",
+      "image": "/uploads/home_section_two_graphic.jpg",
+      "button_label": "Student Ministry",
+      "button_url": "/students"
+    }
+  ]
+}
