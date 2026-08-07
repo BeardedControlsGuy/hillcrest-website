@@ -6,24 +6,18 @@ import ChurchCenterPromo from '../components/ChurchCenterPromo.astro';
 import next from '../data/next-steps.json';
 
 import heroImg from '../assets/img/uploads/music_main_photo.jpg';
-import preschoolImg from '../assets/img/uploads/preschool_section_one_1_photo.jpg';
 import kidsImg from '../assets/img/uploads/home_ministry_left_graphic.jpg';
 import youthImg from '../assets/img/uploads/home_ministry_right_graphic.jpg';
-import menImg from '../assets/img/uploads/home_ministry_one_graphic.jpg';
-import womenImg from '../assets/img/uploads/home_ministry_two_graphic.jpg';
-import seniorsImg from '../assets/img/uploads/seniors_section_one_photo.jpg';
+import adultsImg from '../assets/img/uploads/hbc_womens_ministry.jpg';
 import musicImg from '../assets/img/uploads/home_ministry_three_graphic.jpg';
 import missionsImg from '../assets/img/uploads/home_ministry_four_graphic.jpg';
 
 const tiles = [
-  { label: 'Preschool', href: '/preschool', img: preschoolImg },
-  { label: 'Kids', href: '/kids', img: kidsImg },
-  { label: 'Students', href: '/students', img: youthImg },
-  { label: "Men", href: '/men', img: menImg },
-  { label: "Women", href: '/women', img: womenImg },
-  { label: 'Seniors', href: '/seniors', img: seniorsImg },
-  { label: 'Music', href: '/music', img: musicImg },
-  { label: 'Missions', href: '/missions', img: missionsImg },
+  { label: 'Kids', sub: 'Preschool · Children · AWANA', href: '/ministries/kids', img: kidsImg },
+  { label: 'Students', sub: 'Youth Midweek · Camps', href: '/ministries/students', img: youthImg },
+  { label: 'Adults', sub: "Men · Women · Seniors", href: '/ministries/adults', img: adultsImg },
+  { label: 'Music', sub: 'Choir · Band · Worship', href: '/ministries/music', img: musicImg },
+  { label: 'Missions', sub: 'Local · Foreign', href: '/ministries/missions', img: missionsImg },
 ];
 ---
 <Layout title="Ministries | Hillcrest Baptist Church">
@@ -31,7 +25,7 @@ const tiles = [
   <section class="relative isolate overflow-hidden bg-navy-deep text-white">
     <Image src={heroImg} alt="" class="absolute inset-0 -z-10 h-full w-full object-cover" widths={[768, 1600]} sizes="100vw" loading="eager" />
     <div class="absolute inset-0 -z-10 bg-gradient-to-b from-ink/80 via-navy-deep/60 to-ink/90"></div>
-    <div class="mx-auto max-w-4xl px-4 sm:px-6 py-24 md:py-36 text-center">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 pt-40 pb-24 md:pt-48 md:pb-32 text-center">
       <h1 class="font-display text-4xl md:text-6xl font-extrabold tracking-tight">Ministries</h1>
       <div class="mx-auto mt-5 h-1.5 w-24 rounded bg-gold"></div>
     </div>
@@ -47,14 +41,15 @@ const tiles = [
 
   <!-- Ministry tiles -->
   <section class="bg-white pb-16">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 grid gap-4 grid-cols-2 lg:grid-cols-4">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 grid gap-4 grid-cols-2 lg:grid-cols-5">
       {tiles.map((t) => (
         <a href={t.href} class="reveal group relative isolate overflow-hidden rounded-2xl aspect-[4/5] flex items-end">
-          <Image src={t.img} alt={t.label} widths={[400, 800]} sizes="(min-width: 1024px) 25vw, 50vw"
+          <Image src={t.img} alt={t.label} widths={[400, 800]} sizes="(min-width: 1024px) 20vw, 50vw"
             class="absolute inset-0 -z-10 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
-          <div class="absolute inset-0 -z-10 bg-gradient-to-t from-ink/80 via-ink/20 to-transparent"></div>
+          <div class="absolute inset-0 -z-10 bg-gradient-to-t from-ink/85 via-ink/25 to-transparent"></div>
           <div class="p-5 w-full">
             <h2 class="font-display text-xl md:text-2xl font-extrabold text-white">{t.label}</h2>
+            <p class="mt-1 text-xs font-bold uppercase tracking-wider text-white/70">{t.sub}</p>
             <p class="mt-1 text-sm font-bold text-gold opacity-0 -translate-y-1 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">Explore →</p>
           </div>
         </a>

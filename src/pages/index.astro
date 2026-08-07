@@ -7,40 +7,68 @@ import ChurchCenterPromo from '../components/ChurchCenterPromo.astro';
 import settings from '../data/settings.json';
 import times from '../data/service-times.json';
 import announcements from '../data/announcements.json';
+import feed from '../data/sermons-videos.json';
 
 import heroImg from '../assets/img/uploads/home_worship_times_graphic.jpg';
 import kidsImg from '../assets/img/uploads/home_ministry_left_graphic.jpg';
 import youthImg from '../assets/img/uploads/home_ministry_right_graphic.jpg';
-import menImg from '../assets/img/uploads/home_ministry_one_graphic.jpg';
-import womenImg from '../assets/img/uploads/home_ministry_two_graphic.jpg';
+import adultsImg from '../assets/img/uploads/hbc_womens_ministry.jpg';
 import musicImg from '../assets/img/uploads/home_ministry_three_graphic.jpg';
 import missionsImg from '../assets/img/uploads/home_ministry_four_graphic.jpg';
 
 const activeAnnouncements = announcements.items.filter((a) => a.active);
+const latest = feed.videos[0];
 const ministries = [
-  { title: "Children's Ministry", img: kidsImg, href: '/kids', blurb: 'Our kids are our future — not just in life but in the church. Bring your kids to join the fun!' },
-  { title: 'Student Ministry', img: youthImg, href: '/students', blurb: 'We teach our youth the Word of God and train them to be leaders in life and in the Kingdom.' },
-  { title: "Men's Ministry", img: menImg, href: '/men', blurb: 'Growing men to be like Jesus — in their homes, their church, and their communities.' },
-  { title: "Women's Ministry", img: womenImg, href: '/women', blurb: 'Developing, mentoring, and connecting the women of Hillcrest and our community.' },
-  { title: 'Music Ministry', img: musicImg, href: '/music', blurb: 'Choir and band leading worship that lifts and praises the name of our Heavenly Father.' },
-  { title: 'Missions', img: missionsImg, href: '/missions', blurb: 'Partnered with local and foreign missions to take the gospel into all the world.' },
+  { title: 'Kids', img: kidsImg, href: '/ministries/kids' },
+  { title: 'Students', img: youthImg, href: '/ministries/students' },
+  { title: 'Adults', img: adultsImg, href: '/ministries/adults' },
+  { title: 'Music', img: musicImg, href: '/ministries/music' },
+  { title: 'Missions', img: missionsImg, href: '/ministries/missions' },
 ];
 ---
 <Layout title="Hillcrest Baptist Church | Lebanon, TN">
-  <!-- Hero -->
-  <section class="relative isolate overflow-hidden bg-navy-deep text-white">
+  <!-- Full-height hero -->
+  <section class="relative isolate overflow-hidden bg-navy-deep text-white flex items-center min-h-[94vh]">
     <Image src={heroImg} alt="" class="absolute inset-0 -z-10 h-full w-full object-cover" widths={[768, 1280, 1920]} sizes="100vw" loading="eager" />
-    <div class="absolute inset-0 -z-10 bg-gradient-to-b from-ink/85 via-navy-deep/70 to-ink/90"></div>
-    <div class="mx-auto max-w-4xl px-4 sm:px-6 py-28 md:py-40 text-center">
-      <p class="font-display text-sm md:text-base font-bold uppercase tracking-[0.3em] text-gold">{settings.tagline}</p>
-      <h1 class="mt-4 font-display text-4xl md:text-6xl font-extrabold tracking-tight">Welcome to Hillcrest</h1>
-      <p class="mx-auto mt-6 max-w-2xl text-lg text-white/85 leading-relaxed">
-        Whether you are looking for a home church or just looking, we trust that you will find here
-        information that will help you grow in your Christian life.
+    <div class="absolute inset-0 -z-10 bg-gradient-to-b from-ink/70 via-navy-deep/40 to-ink/90"></div>
+    <div class="mx-auto w-full max-w-7xl px-5 sm:px-8 pt-28 pb-20">
+      <p class="font-display text-sm md:text-base font-bold uppercase tracking-[0.35em] text-gold">{settings.tagline}</p>
+      <h1 class="mt-5 max-w-4xl font-display text-5xl md:text-8xl font-extrabold tracking-tight leading-[0.95]">Welcome to Hillcrest</h1>
+      <p class="mt-7 max-w-xl text-lg md:text-xl text-white/85 leading-relaxed">
+        A church family on the hill in Lebanon, Tennessee — where everyone belongs and
+        Jesus Christ is Lord. Need GOD? He's here.
       </p>
-      <div class="mt-8 flex flex-wrap justify-center gap-4">
-        <a href="/visit" class="rounded-full bg-sky px-7 py-3 font-bold text-white hover:bg-sky-bright transition-colors">Plan Your Visit</a>
-        <a href="/sermons" class="rounded-full bg-white/10 px-7 py-3 font-bold text-white ring-1 ring-white/30 hover:bg-white/20 transition-colors">Watch a Service</a>
+      <div class="mt-10 flex flex-wrap gap-4">
+        <a href="/visit" class="rounded-full bg-sky px-8 py-3.5 font-bold text-white hover:bg-sky-bright transition-colors">Plan Your Visit</a>
+        <a href="/sermons" class="rounded-full bg-white/10 px-8 py-3.5 font-bold text-white ring-1 ring-white/30 hover:bg-white/20 transition-colors">Watch a Service</a>
+      </div>
+    </div>
+    <a href="#sundays" aria-label="Scroll down" class="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/60 hover:text-white">
+      <svg class="h-7 w-7 animate-bounce" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </a>
+  </section>
+
+  <!-- Sundays band -->
+  <section id="sundays" class="bg-white">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8 py-16 md:py-24 grid gap-10 md:grid-cols-[1fr_auto] md:items-center">
+      <div class="reveal">
+        <p class="text-sm font-bold uppercase tracking-[0.25em] text-sky">Join Us</p>
+        <h2 class="mt-2 font-display text-3xl md:text-5xl font-extrabold text-navy tracking-tight">Sundays &amp; Wednesdays on the hill</h2>
+        <p class="mt-4 max-w-xl text-slate-600 text-lg">Biblical preaching, Christ-exalting worship, and a place for every age — {settings.address_line1}, {settings.address_line2}.</p>
+      </div>
+      <div class="reveal grid grid-cols-2 gap-8 text-[15px]">
+        <div>
+          <p class="font-display font-bold text-gold uppercase tracking-wider text-sm">Sunday</p>
+          <ul class="mt-3 space-y-1.5 text-slate-700">
+            {times.sunday.map((s) => <li><span class="font-bold text-navy">{s.time}</span> · {s.name}</li>)}
+          </ul>
+        </div>
+        <div>
+          <p class="font-display font-bold text-gold uppercase tracking-wider text-sm">Wednesday</p>
+          <ul class="mt-3 space-y-1.5 text-slate-700">
+            {times.wednesday.map((s) => <li><span class="font-bold text-navy">{s.time}</span> · {s.name}</li>)}
+          </ul>
+        </div>
       </div>
     </div>
   </section>
@@ -48,20 +76,20 @@ const ministries = [
   <!-- Announcements -->
   {activeAnnouncements.length > 0 && (
     <section class="bg-cream">
-      <div class="mx-auto max-w-7xl px-4 sm:px-6 py-16 md:py-20 space-y-14">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8 py-16 md:py-24 space-y-16">
         <SectionHeading eyebrow="What's Happening" title="Announcements" />
         {activeAnnouncements.map((a, i) => (
-          <div class:list={["reveal grid gap-8 md:grid-cols-2 items-center", i % 2 === 1 && "md:[&>*:first-child]:order-2"]}>
-            <div class="overflow-hidden rounded-2xl shadow-lg">
+          <div class:list={["reveal grid gap-10 md:grid-cols-2 items-center", i % 2 === 1 && "md:[&>*:first-child]:order-2"]}>
+            <div class="overflow-hidden rounded-3xl shadow-lg">
               <img src={a.image} alt={a.title} class="w-full object-cover" loading="lazy" />
             </div>
             <div>
-              <h3 class="font-display text-2xl md:text-3xl font-extrabold text-navy">{a.title}</h3>
-              {a.subtitle && <p class="mt-1 font-semibold text-sky">{a.subtitle}</p>}
-              <p class="mt-4 whitespace-pre-line text-slate-700 leading-relaxed">{a.body}</p>
+              <h3 class="font-display text-3xl md:text-4xl font-extrabold text-navy tracking-tight">{a.title}</h3>
+              {a.subtitle && <p class="mt-2 font-semibold text-sky text-lg">{a.subtitle}</p>}
+              <p class="mt-5 whitespace-pre-line text-slate-700 leading-relaxed">{a.body}</p>
               {a.button_url && (
                 <a href={a.button_url} target={a.button_url.startsWith('http') ? '_blank' : undefined} rel="noopener"
-                  class="mt-6 inline-block rounded-full bg-navy px-6 py-2.5 font-bold text-white hover:bg-sky transition-colors">{a.button_label}</a>
+                  class="mt-7 inline-block rounded-full bg-navy px-7 py-3 font-bold text-white hover:bg-sky transition-colors">{a.button_label}</a>
               )}
             </div>
           </div>
@@ -70,67 +98,21 @@ const ministries = [
     </section>
   )}
 
-  <!-- Welcome video -->
+  <!-- Ministries strip -->
   <section class="bg-white">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 py-16 md:py-20 grid gap-10 md:grid-cols-2 items-center">
-      <div class="reveal">
-        <SectionHeading eyebrow="Come Grow With Us" title="Welcome to Hillcrest!" />
-        <p class="mt-6 text-slate-700 leading-relaxed">
-          We are so excited you stopped by our online home. We hope you will plan to join us at our
-          location for a worship service soon. God bless you as you seek to grow closer to Him!
-        </p>
-        <a href="/visit" class="mt-6 inline-block rounded-full bg-sky px-6 py-2.5 font-bold text-white hover:bg-navy transition-colors">Plan Your Visit</a>
-      </div>
-      <div class="reveal">
-        <VideoEmbed id={settings.welcome_video_id} title="Welcome to Hillcrest Baptist Church" />
-      </div>
-    </div>
-  </section>
-
-  <!-- Worship times -->
-  <section class="relative isolate overflow-hidden bg-navy-deep text-white">
-    <div class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,rgba(20,157,204,0.25),transparent_60%)]"></div>
-    <div class="mx-auto max-w-5xl px-4 sm:px-6 py-16 md:py-20 text-center">
-      <SectionHeading eyebrow="Join Us" title="Worship Times" light />
-      <div class="mt-10 grid gap-6 sm:grid-cols-2 text-left">
-        <div class="reveal rounded-2xl bg-white/5 ring-1 ring-white/10 p-7">
-          <h3 class="font-display text-xl font-bold text-gold">Sunday</h3>
-          <ul class="mt-4 space-y-2.5">
-            {times.sunday.map((s) => (
-              <li class="flex justify-between gap-4 text-white/85"><span>{s.name}</span><span class="font-bold text-white">{s.time}</span></li>
-            ))}
-          </ul>
-        </div>
-        <div class="reveal rounded-2xl bg-white/5 ring-1 ring-white/10 p-7">
-          <h3 class="font-display text-xl font-bold text-gold">Wednesday</h3>
-          <ul class="mt-4 space-y-2.5">
-            {times.wednesday.map((s) => (
-              <li class="flex justify-between gap-4 text-white/85"><span>{s.name}</span><span class="font-bold text-white">{s.time}</span></li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Ministries -->
-  <section class="bg-white">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 py-16 md:py-20">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8 py-16 md:py-24">
       <div class="flex flex-wrap items-end justify-between gap-4">
-        <SectionHeading eyebrow="Get Connected" title="Our Ministries" />
+        <SectionHeading eyebrow="Get Connected" title="A place for everyone" />
         <a href="/ministries" class="font-bold text-sky hover:underline">All ministries &amp; next steps →</a>
       </div>
-      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="mt-10 grid gap-4 grid-cols-2 lg:grid-cols-5">
         {ministries.map((m) => (
-          <a href={m.href} class="reveal group overflow-hidden rounded-2xl bg-cream shadow-sm ring-1 ring-black/5 hover:shadow-xl transition-shadow">
-            <div class="overflow-hidden">
-              <Image src={m.img} alt={m.title} widths={[400, 800]} sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                class="aspect-[3/2] w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
-            </div>
-            <div class="p-6">
-              <h3 class="font-display text-lg font-bold text-navy group-hover:text-sky transition-colors">{m.title}</h3>
-              <p class="mt-2 text-sm text-slate-600 leading-relaxed">{m.blurb}</p>
-              <p class="mt-3 text-sm font-bold text-sky">Learn more →</p>
+          <a href={m.href} class="reveal group relative isolate overflow-hidden rounded-2xl aspect-[4/5] flex items-end">
+            <Image src={m.img} alt={m.title} widths={[400, 800]} sizes="(min-width: 1024px) 20vw, 50vw"
+              class="absolute inset-0 -z-10 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+            <div class="absolute inset-0 -z-10 bg-gradient-to-t from-ink/80 via-ink/15 to-transparent"></div>
+            <div class="p-5">
+              <h3 class="font-display text-xl font-extrabold text-white">{m.title}</h3>
             </div>
           </a>
         ))}
@@ -138,30 +120,42 @@ const ministries = [
     </div>
   </section>
 
+  <!-- Latest service -->
+  {latest && (
+    <section class="bg-navy-deep text-white">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8 py-16 md:py-24 grid gap-10 md:grid-cols-2 items-center">
+        <div class="reveal">
+          <SectionHeading eyebrow="Missed a Sunday?" title="Watch the latest service" light />
+          <p class="mt-5 text-white/80 text-lg">{latest.title}</p>
+          <div class="mt-7 flex flex-wrap gap-4">
+            <a href="/sermons" class="rounded-full bg-sky px-7 py-3 font-bold hover:bg-sky-bright transition-colors">All Sermons</a>
+            <a href="/podcasts" class="rounded-full bg-white/10 px-7 py-3 font-bold ring-1 ring-white/25 hover:bg-white/20 transition-colors">Podcasts</a>
+          </div>
+        </div>
+        <div class="reveal">
+          <VideoEmbed id={latest.id} title={latest.title} />
+        </div>
+      </div>
+    </section>
+  )}
+
   <ChurchCenterPromo />
 
   <!-- Visit / map -->
   <section class="bg-cream">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 py-16 md:py-20 grid gap-10 md:grid-cols-2 items-center">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8 py-16 md:py-24 grid gap-10 md:grid-cols-2 items-center">
       <div class="reveal">
-        <SectionHeading eyebrow="Visit Us" title="We'd Love to Meet You" />
-        <p class="mt-6 text-slate-700 leading-relaxed italic">
-          "For where two or three are gathered together in my name, there am I in the midst of them."
-          — Matthew 18:20
+        <SectionHeading eyebrow="Visit Us" title="We'd love to meet you" />
+        <p class="mt-6 text-slate-700 leading-relaxed italic text-lg">
+          "For where two or three are gathered together in my name, there am I in the midst of them." — Matthew 18:20
         </p>
-        <address class="mt-6 not-italic text-slate-700 leading-relaxed">
-          <strong class="text-navy">{settings.church_name}</strong><br />
-          {settings.address_line1}<br />
-          {settings.address_line2}<br />
-          Tel: <a href="tel:+16154445923" class="text-sky font-semibold">{settings.phone}</a>
-        </address>
-        <a href="/visit" class="mt-6 inline-block rounded-full bg-navy px-6 py-2.5 font-bold text-white hover:bg-sky transition-colors">What to Expect</a>
+        <a href="/visit" class="mt-7 inline-block rounded-full bg-navy px-7 py-3 font-bold text-white hover:bg-sky transition-colors">What to Expect</a>
       </div>
-      <div class="reveal overflow-hidden rounded-2xl shadow-lg">
+      <div class="reveal overflow-hidden rounded-3xl shadow-lg">
         <iframe
           title="Map to Hillcrest Baptist Church"
           src="https://www.google.com/maps?q=Hillcrest+Baptist+Church,+621+Hartsville+Pike,+Lebanon,+TN+37087&output=embed"
-          class="h-80 w-full border-0"
+          class="h-96 w-full border-0"
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
         ></iframe>

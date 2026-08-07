@@ -1,0 +1,108 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import Gallery from '../../components/Gallery.astro';
+import { Image } from 'astro:assets';
+import hero from '../../assets/img/uploads/women_main_photo.jpg';
+import menImg from '../../assets/img/uploads/men_section_one_photo.jpg';
+import womenImg from '../../assets/img/uploads/hbc_womens_ministry.jpg';
+import seniorsImg from '../../assets/img/uploads/seniors_section_one_photo.jpg';
+
+const gallery = Object.values(
+  import.meta.glob('../../assets/img/uploads/women_gallery_*.jpg', { eager: true, import: 'default' })
+) as ImageMetadata[];
+---
+<Layout title="Adults at Hillcrest | Hillcrest Baptist Church">
+  <PageHero
+    eyebrow="Men · Women · Seniors"
+    title="Adults at Hillcrest"
+    subtitle="Sunday School classes for every age and stage, plus ministries built for men, women, and senior adults — iron sharpening iron, Titus 2 mentoring, and a lifetime of fellowship."
+    image={hero}
+    tall
+  >
+    <div class="mt-8 flex flex-wrap gap-3 text-sm font-bold">
+      <a href="#men" class="rounded-full bg-white/10 ring-1 ring-white/25 px-5 py-2 hover:bg-white/20">Men</a>
+      <a href="#women" class="rounded-full bg-white/10 ring-1 ring-white/25 px-5 py-2 hover:bg-white/20">Women</a>
+      <a href="#seniors" class="rounded-full bg-white/10 ring-1 ring-white/25 px-5 py-2 hover:bg-white/20">Seniors</a>
+    </div>
+  </PageHero>
+
+  <section id="men" class="bg-white scroll-mt-24">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8 py-16 md:py-24 grid gap-10 md:grid-cols-2 items-center">
+      <div class="reveal">
+        <SectionHeading eyebrow="Men's Ministry" title="Men who stand on biblical principles" />
+        <div class="mt-6 space-y-4 text-slate-700 leading-relaxed">
+          <p>
+            Our vision is simple: engage men into a fully surrendered and devout life to Jesus
+            Christ — in their families, their church, and their communities, for the glory of Jesus
+            Christ.
+          </p>
+          <p><strong>Growing men to be like Jesus</strong> — "that we may present every man perfect in Christ Jesus" (Colossians 1:28). "Iron sharpeneth iron; so a man sharpeneth the countenance of his friend" (Proverbs 27:17).</p>
+          <p><strong>Growing men of God in their homes</strong> (1 Peter 3:7, Ephesians 6:4) and <strong>growing men to serve</strong> — "a light of the Gentiles... for salvation unto the ends of the earth" (Acts 13:47).</p>
+        </div>
+      </div>
+      <div class="reveal overflow-hidden rounded-3xl shadow-lg">
+        <Image src={menImg} alt="Men's Ministry" widths={[600, 1200]} sizes="(min-width: 768px) 50vw, 100vw" class="w-full object-cover" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <section id="women" class="bg-cream scroll-mt-24">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8 py-16 md:py-24 grid gap-10 md:grid-cols-2 items-center">
+      <div class="reveal overflow-hidden rounded-3xl shadow-lg md:order-1">
+        <Image src={womenImg} alt="Women's Ministry" widths={[600, 1200]} sizes="(min-width: 768px) 50vw, 100vw" class="w-full object-cover" loading="lazy" />
+      </div>
+      <div class="reveal md:order-2">
+        <SectionHeading eyebrow="Women's Ministry" title="Develop · Mentor · Connect" />
+        <div class="mt-6 space-y-4 text-slate-700 leading-relaxed">
+          <p>
+            <strong>Develop</strong> the lives of women in our church and community — from just
+            graduated to the mature woman — by lifting one another up and preparing each other for
+            whatever the world throws at us.
+          </p>
+          <p>
+            <strong>Mentor</strong> in the pattern of Titus 2:3-4 — mature women teaching younger
+            women by example, in holiness and good things.
+          </p>
+          <p>
+            <strong>Connect</strong> through Bible studies, simulcasts, retreats, and craft nights —
+            lifting up our Lord together with speakers, worship, prayer, and study. Watch the
+            bulletin and texts for upcoming fellowship times.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="seniors" class="bg-white scroll-mt-24">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8 py-16 md:py-24 grid gap-10 md:grid-cols-2 items-center">
+      <div class="reveal">
+        <SectionHeading eyebrow="Seniors Ministry" title="Heavenly-minded, living abundantly" />
+        <div class="mt-6 space-y-4 text-slate-700 leading-relaxed">
+          <p>
+            Our seniors hold a special place in our hearts and in our family at Hillcrest — serving
+            as Sunday School teachers, singing in the choir, and mentoring younger generations.
+          </p>
+          <p>
+            An active community of senior adults enjoys weekly worship and Bible study, fellowship
+            luncheons, exciting day trips, concerts, shopping outings and much more — building
+            friendships that last a lifetime.
+          </p>
+        </div>
+      </div>
+      <div class="reveal overflow-hidden rounded-3xl shadow-lg">
+        <Image src={seniorsImg} alt="Seniors Ministry" widths={[600, 1200]} sizes="(min-width: 768px) 50vw, 100vw" class="w-full object-cover" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  {gallery.length > 0 && (
+    <section class="bg-cream">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8 py-16">
+        <SectionHeading eyebrow="Photos" title="Adults Gallery" />
+        <div class="mt-8"><Gallery images={gallery} alt="Adults at Hillcrest" /></div>
+      </div>
+    </section>
+  )}
+</Layout>

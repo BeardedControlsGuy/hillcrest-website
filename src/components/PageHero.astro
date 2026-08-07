@@ -4,10 +4,12 @@ interface Props {
   title: string;
   subtitle?: string;
   image?: ImageMetadata;
+  eyebrow?: string;
+  tall?: boolean;
 }
-const { title, subtitle, image } = Astro.props;
+const { title, subtitle, image, eyebrow, tall = false } = Astro.props;
 ---
-<section class="relative isolate overflow-hidden bg-navy-deep text-white">
+<section class:list={["relative isolate overflow-hidden bg-navy-deep text-white flex items-end", tall ? "min-h-[72vh]" : "min-h-[52vh]"]}>
   {image && (
     <Image
       src={image}
@@ -18,10 +20,11 @@ const { title, subtitle, image } = Astro.props;
       loading="eager"
     />
   )}
-  <div class="absolute inset-0 -z-10 bg-gradient-to-b from-ink/80 via-navy-deep/70 to-ink/85"></div>
-  <div class="mx-auto max-w-4xl px-4 sm:px-6 py-24 md:py-32 text-center">
-    <h1 class="font-display text-4xl md:text-5xl font-extrabold tracking-tight">{title}</h1>
-    {subtitle && <p class="mt-5 text-lg text-white/85 whitespace-pre-line leading-relaxed">{subtitle}</p>}
+  <div class="absolute inset-0 -z-10 bg-gradient-to-b from-ink/60 via-ink/20 to-ink/85"></div>
+  <div class="mx-auto w-full max-w-7xl px-5 sm:px-8 pt-36 pb-14 md:pb-20">
+    {eyebrow && <p class="text-sm font-bold uppercase tracking-[0.25em] text-gold">{eyebrow}</p>}
+    <h1 class="mt-2 max-w-3xl font-display text-5xl md:text-7xl font-extrabold tracking-tight">{title}</h1>
+    {subtitle && <p class="mt-6 max-w-2xl text-lg md:text-xl text-white/85 whitespace-pre-line leading-relaxed">{subtitle}</p>}
     <slot />
   </div>
 </section>

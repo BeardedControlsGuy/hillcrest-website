@@ -1,106 +1,141 @@
 ---
 import settings from '../data/settings.json';
+import times from '../data/service-times.json';
 
-const menu = [
-  { label: 'Home', href: '/' },
-  {
-    label: 'About',
-    children: [
-      { label: 'Plan Your Visit', href: '/visit' },
-      { label: 'About Hillcrest', href: '/about' },
-      { label: 'Staff', href: '/staff' },
-    ],
-  },
-  {
-    label: 'Ministries',
-    children: [
-      { label: 'All Ministries', href: '/ministries' },
-      { label: 'Music', href: '/music' },
-      { label: 'Students', href: '/students' },
-      { label: "Men's", href: '/men' },
-      { label: "Women's", href: '/women' },
-      { label: "Children's", href: '/kids' },
-      { label: 'Preschool', href: '/preschool' },
-      { label: 'Seniors', href: '/seniors' },
-      { label: 'Missions', href: '/missions' },
-    ],
-  },
-  {
-    label: 'Sermons',
-    children: [
-      { label: 'Videos', href: '/sermons' },
-      { label: 'Podcasts', href: '/podcasts' },
-    ],
-  },
+const primary = [
+  { label: 'New Here?', href: '/visit' },
+  { label: 'Ministries', href: '/ministries' },
+  { label: 'Sermons', href: '/sermons' },
   { label: 'Events', href: '/events' },
+];
+const overlay = [
+  { label: 'Home', href: '/' },
+  { label: 'Plan Your Visit', href: '/visit' },
+  { label: 'About Hillcrest', href: '/about' },
+  { label: 'Staff', href: '/staff' },
+  { label: 'Ministries', href: '/ministries' },
+  { label: 'Sermons', href: '/sermons' },
+  { label: 'Podcasts', href: '/podcasts' },
+  { label: 'Events', href: '/events' },
+  { label: 'Give', href: '/give' },
   { label: 'Careers', href: '/careers' },
   { label: 'Contact', href: '/contact' },
 ];
 ---
-<header class="fixed inset-x-0 top-0 z-50 bg-ink/90 backdrop-blur border-b border-white/10">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6">
-    <div class="flex h-16 items-center justify-between">
-      <a href="/" class="flex items-center gap-3">
-        <img src="/images/hbc_logo_white.png" alt="Hillcrest Baptist Church — Lebanon, TN" class="h-10 w-auto" />
+<header id="site-nav" class="fixed inset-x-0 top-0 z-50 transition-colors duration-300">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8">
+    <div class="flex h-20 items-center justify-between">
+      <a href="/" class="flex items-center">
+        <img src="/images/hbc_logo_white.png" alt="Hillcrest Baptist Church — Lebanon, TN" class="h-9 w-auto" />
       </a>
-
-      <nav class="hidden lg:flex items-center gap-1" aria-label="Main">
-        {menu.map((item) =>
-          item.children ? (
-            <div class="relative group">
-              <button class="px-3 py-2 text-sm font-semibold tracking-wide text-white/90 hover:text-white inline-flex items-center gap-1" aria-haspopup="true">
-                {item.label}
-                <svg class="h-3 w-3 opacity-70" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-              </button>
-              <div class="absolute left-0 top-full pt-1 hidden group-hover:block group-focus-within:block">
-                <div class="min-w-44 rounded-lg bg-navy-deep shadow-xl ring-1 ring-white/10 py-2">
-                  {item.children.map((c) => (
-                    <a href={c.href} class="block px-4 py-2 text-sm text-white/85 hover:bg-white/10 hover:text-white">{c.label}</a>
-                  ))}
-                </div>
-              </div>
-            </div>
-          ) : (
-            <a href={item.href} class="px-3 py-2 text-sm font-semibold tracking-wide text-white/90 hover:text-white">{item.label}</a>
-          )
-        )}
-        <a href={settings.giving_url} target="_blank" rel="noopener" class="ml-2 rounded-full bg-sky px-4 py-2 text-sm font-bold text-white hover:bg-sky-bright transition-colors">Give</a>
+      <nav class="flex items-center gap-1 sm:gap-2" aria-label="Main">
+        <div class="hidden md:flex items-center gap-1">
+          {primary.map((i) => (
+            <a href={i.href} class="px-4 py-2 text-[15px] font-semibold tracking-wide text-white/90 hover:text-white">{i.label}</a>
+          ))}
+        </div>
+        <a href={settings.giving_url} target="_blank" rel="noopener" class="hidden sm:inline-block rounded-full bg-sky px-5 py-2 text-[15px] font-bold text-white hover:bg-sky-bright transition-colors">Give</a>
+        <button id="menu-open" class="ml-1 inline-flex items-center gap-2 px-3 py-2 text-[15px] font-bold text-white" aria-label="Open menu" aria-expanded="false" aria-controls="menu-overlay">
+          Menu
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
       </nav>
-
-      <button id="nav-toggle" class="lg:hidden p-2 text-white" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
-        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-      </button>
     </div>
   </div>
-
-  <div id="mobile-menu" class="hidden lg:hidden max-h-[calc(100vh-4rem)] overflow-y-auto border-t border-white/10 bg-ink px-4 pb-6">
-    {menu.map((item) =>
-      item.children ? (
-        <details class="border-b border-white/10">
-          <summary class="cursor-pointer list-none py-3 text-sm font-semibold text-white/90 flex items-center justify-between">
-            {item.label}
-            <svg class="h-3 w-3 opacity-70" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-          </summary>
-          <div class="pb-2">
-            {item.children.map((c) => (
-              <a href={c.href} class="block py-2 pl-4 text-sm text-white/75 hover:text-white">{c.label}</a>
-            ))}
-          </div>
-        </details>
-      ) : (
-        <a href={item.href} class="block border-b border-white/10 py-3 text-sm font-semibold text-white/90 hover:text-white">{item.label}</a>
-      )
-    )}
-    <a href={settings.giving_url} target="_blank" rel="noopener" class="mt-4 block rounded-full bg-sky px-4 py-2.5 text-center text-sm font-bold text-white">Give Online</a>
-  </div>
 </header>
-<div class="h-16"></div>
+
+<!-- Full-screen menu overlay -->
+<div id="menu-overlay" class="fixed inset-0 z-[60] hidden bg-ink/[0.98] text-white overflow-y-auto">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8 min-h-full flex flex-col">
+    <div class="flex h-20 items-center justify-between">
+      <img src="/images/hbc_logo_white.png" alt="" class="h-9 w-auto" />
+      <button id="menu-close" class="inline-flex items-center gap-2 px-3 py-2 text-[15px] font-bold" aria-label="Close menu">
+        Close
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <div class="grid gap-12 py-10 md:grid-cols-[1fr_minmax(280px,0.6fr)] flex-1">
+      <nav aria-label="Full menu">
+        <ul class="space-y-1">
+          {overlay.map((i, n) => (
+            <li style={`--d:${n * 30}ms`} class="menu-item">
+              <a href={i.href} class="group inline-flex items-baseline gap-3 py-1.5 font-display text-3xl md:text-5xl font-extrabold tracking-tight text-white/85 hover:text-white transition-colors">
+                {i.label}
+                <span class="text-gold opacity-0 group-hover:opacity-100 transition-opacity text-2xl">→</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      <div class="space-y-8 md:pt-3 text-white/80">
+        <div>
+          <p class="text-sm font-bold uppercase tracking-[0.2em] text-gold">Worship Times</p>
+          <ul class="mt-3 space-y-1 text-[15px]">
+            {times.sunday.map((s) => <li>Sun {s.time} — {s.name}</li>)}
+            {times.wednesday.map((s) => <li>Wed {s.time} — {s.name}</li>)}
+          </ul>
+        </div>
+        <div>
+          <p class="text-sm font-bold uppercase tracking-[0.2em] text-gold">Find Us</p>
+          <p class="mt-3 text-[15px]">{settings.address_line1}<br />{settings.address_line2}<br />
+            <a href="tel:+16154445923" class="hover:text-white">{settings.phone}</a></p>
+        </div>
+        <div>
+          <p class="text-sm font-bold uppercase tracking-[0.2em] text-gold">Church Center</p>
+          <div class="mt-3 flex flex-wrap gap-2">
+            <a href={settings.giving_url} target="_blank" rel="noopener" class="rounded-full bg-white/10 px-4 py-1.5 text-sm font-bold hover:bg-white/20">Give</a>
+            <a href={settings.registrations_url} target="_blank" rel="noopener" class="rounded-full bg-white/10 px-4 py-1.5 text-sm font-bold hover:bg-white/20">Sign-Ups</a>
+            <a href={settings.connection_card_url} target="_blank" rel="noopener" class="rounded-full bg-white/10 px-4 py-1.5 text-sm font-bold hover:bg-white/20">Connect Card</a>
+          </div>
+        </div>
+        <div class="flex gap-3">
+          <a href={settings.facebook_url} target="_blank" rel="noopener" aria-label="Facebook" class="rounded-full bg-white/10 p-2.5 hover:bg-sky transition-colors">
+            <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.09 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.7 4.53-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.5c-1.5 0-1.96.93-1.96 1.89v2.26h3.32l-.53 3.49h-2.79V24C19.61 23.09 24 18.1 24 12.07z"/></svg>
+          </a>
+          <a href={settings.instagram_url} target="_blank" rel="noopener" aria-label="Instagram" class="rounded-full bg-white/10 p-2.5 hover:bg-sky transition-colors">
+            <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85C2.38 3.92 3.9 2.38 7.15 2.23 8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 2.7.27.27 2.69.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.2 4.36 2.62 6.78 6.98 6.98 1.28.06 1.69.07 4.95.07s3.67-.01 4.95-.07c4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.2-4.35-2.62-6.78-6.98-6.98C15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zm0 10.15A3.99 3.99 0 1 1 16 12a3.99 3.99 0 0 1-4 3.99zm6.41-11.85a1.44 1.44 0 1 0 1.43 1.44 1.44 1.44 0 0 0-1.43-1.44z"/></svg>
+          </a>
+          <a href={settings.youtube_url} target="_blank" rel="noopener" aria-label="YouTube" class="rounded-full bg-white/10 p-2.5 hover:bg-sky transition-colors">
+            <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.5A3.02 3.02 0 0 0 .5 6.19 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14c1.88.5 9.38.5 9.38.5s7.5 0 9.38-.5a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.81zM9.55 15.57V8.43L15.82 12z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  #site-nav.scrolled {
+    background: color-mix(in srgb, var(--color-ink) 92%, transparent);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgb(255 255 255 / 0.08);
+  }
+  #menu-overlay .menu-item {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  #menu-overlay.open .menu-item {
+    opacity: 1;
+    transform: none;
+    transition: opacity 0.4s ease var(--d), transform 0.4s ease var(--d);
+  }
+</style>
 
 <script>
-  const toggle = document.getElementById('nav-toggle');
-  const menu = document.getElementById('mobile-menu');
-  toggle?.addEventListener('click', () => {
-    const open = menu?.classList.toggle('hidden') === false;
-    toggle.setAttribute('aria-expanded', String(open));
-  });
+  const nav = document.getElementById('site-nav');
+  const onScroll = () => nav?.classList.toggle('scrolled', window.scrollY > 40);
+  onScroll();
+  addEventListener('scroll', onScroll, { passive: true });
+
+  const overlayEl = document.getElementById('menu-overlay');
+  const openBtn = document.getElementById('menu-open');
+  const setOpen = (open: boolean) => {
+    overlayEl?.classList.toggle('hidden', !open);
+    requestAnimationFrame(() => overlayEl?.classList.toggle('open', open));
+    openBtn?.setAttribute('aria-expanded', String(open));
+    document.documentElement.style.overflow = open ? 'hidden' : '';
+  };
+  openBtn?.addEventListener('click', () => setOpen(true));
+  document.getElementById('menu-close')?.addEventListener('click', () => setOpen(false));
+  addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
 </script>
