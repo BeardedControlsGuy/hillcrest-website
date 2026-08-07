@@ -2,6 +2,15 @@
   "items": [
     {
       "active": true,
+      "title": "Welcome, Pastor Bryce!",
+      "subtitle": "Meet our new Student Pastor",
+      "body": "Hillcrest is thrilled to welcome Bryce Campbell as our new Student Pastor! Bryce, his wife McKenzie, and their two children — Beckett and Dolly — have come to the hill from Kentucky, and they've already jumped in with both feet: Pastor Bryce was with our students at Arise! Youth Camp in his very first weeks and is investing in our youth every week at Sunday School and Youth Midweek.\n\nWe believe God is just getting started with Hillcrest Students. Come meet Pastor Bryce and his family — and students, we'll see you Wednesday at 6:45 PM!",
+      "image": "/uploads/bryce_family.jpg",
+      "button_label": "Meet Our Staff",
+      "button_url": "/staff"
+    },
+    {
+      "active": true,
       "title": "Awana Clubs",
       "subtitle": "Awana Clubs are Back!",
       "body": "Join us as Awana kicks off on Wednesday, August 5, 2026, at 6:50 PM in the Jubilee Center! Awana is open to children ages 2 through 6th grade and is a fun, Christ-centered program where kids learn God's Word, build lasting friendships, and grow in their faith.\n\nClick the \"Register\" button below to sign up your child. We look forward to seeing your family!",
