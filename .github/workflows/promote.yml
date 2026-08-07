@@ -1,0 +1,31 @@
+name: Promote staging to live
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: promote
+  cancel-in-progress: false
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Merge staging into main
+        run: |
+          git config user.name "hillcrest-promote-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git merge origin/staging -m "Promote staging to live" || { echo "::error::Merge conflict — resolve manually"; exit 1; }
+          git push origin main
+      - name: Sync main back into staging
+        run: |
+          git checkout staging
+          git merge main -m "Sync live back into staging" || true
+          git push origin staging

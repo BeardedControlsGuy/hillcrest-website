@@ -2,11 +2,11 @@ name: Deploy to Cloudflare Pages
 
 on:
   push:
-    branches: [main]
+    branches: [main, staging]
   workflow_dispatch:
 
 concurrency:
-  group: pages-deploy
+  group: pages-deploy-${{ github.ref_name }}
   cancel-in-progress: true
 
 jobs:
@@ -20,9 +20,11 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
+      # main -> production (hillcrest-website.pages.dev)
+      # staging -> preview alias (staging.hillcrest-website.pages.dev)
       - name: Deploy
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy dist --project-name hillcrest-website --branch main
+          command: pages deploy dist --project-name hillcrest-website --branch ${{ github.ref_name }}

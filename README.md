@@ -18,8 +18,12 @@ edited by church staff through **Pages CMS**, and tied into **Church Center**
    - **Staff** — add/remove staff, upload photos, edit bios.
    - **Careers** — post open positions.
    - **Site Settings** — phone, email, social links, podcast links, radio text.
-3. Click **Save**. The site rebuilds automatically and your change is live in
-   about two minutes.
+3. Click **Save**. Your change goes to the **preview site** first:
+   **https://staging.hillcrest-website.pages.dev** (ready ~2 minutes after saving).
+4. Proof your change on the preview site. Nothing is public yet.
+5. When it looks right, ask the site admin to **push it live** (repo →
+   Actions → "Promote staging to live" → Run workflow). The live site updates
+   about two minutes later.
 
 ## 🔄 What updates itself
 
