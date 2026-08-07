@@ -1,0 +1,41 @@
+{
+  "intro": "At Hillcrest, we exist to reach, teach, and preach — and our ministries are where that happens. No matter your age or stage of life, there's a place for you on the hill to grow, connect, and serve.",
+  "steps": [
+    {
+      "title": "New to Hillcrest?",
+      "body": "Come be our guest for a worship service. See what to expect, where to park, and what's here for your kids.",
+      "button_label": "Plan Your Visit",
+      "button_url": "/visit"
+    },
+    {
+      "title": "Ready for Baptism?",
+      "body": "Taking the step of believer's baptism is one of the greatest decisions you'll ever make. Pastor David would love to talk with you about it — no pressure, just a conversation.",
+      "button_label": "Talk with Pastor David",
+      "button_url": "mailto:david@hillcrestbaptist.org?subject=Baptism"
+    },
+    {
+      "title": "Get Connected & Serve",
+      "body": "Fill out a connect card and tell us where you are — we'll help you find your place to grow, plug into a Sunday School class, and start serving.",
+      "button_label": "Fill Out a Connect Card",
+      "button_url": "https://hillcrestbaptisttn.churchcenter.com/people/forms/106079"
+    }
+  ],
+  "faqs": [
+    {
+      "q": "I'm brand new — where do I start?",
+      "a": "Start with a Sunday morning service at 8:30 or 11:00. Park in the visitor spaces near the front of the sanctuary, and our greeters will point you everywhere you need to go. Sunday School for all ages meets at 10:00."
+    },
+    {
+      "q": "What's here for my kids?",
+      "a": "A secure, check-in/check-out nursery and preschool environment for newborns through age 5, Children's Church for K–2nd grade during 11:00 worship, and AWANA on Wednesday nights during the school year for ages 2 through 6th grade."
+    },
+    {
+      "q": "How do I join a Sunday School class or start serving?",
+      "a": "Fill out the connect card and we'll match you with a class for your age and stage — or stop by the front desk on Sunday and we'll walk you there ourselves. Serving opportunities are open in every ministry."
+    },
+    {
+      "q": "How do I get baptized or join the church?",
+      "a": "We'd love to talk with you. Reach out to Pastor David Rhodes (david@hillcrestbaptist.org), speak with any pastor after a service, or come forward during the invitation. We baptize new believers almost every Sunday."
+    }
+  ]
+}

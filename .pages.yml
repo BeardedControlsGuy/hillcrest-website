@@ -94,6 +94,30 @@ content:
           - { name: description, label: Description, type: text }
           - { name: apply_url, label: "Apply link (optional — leave blank to use email)", type: string }
 
+  - name: next_steps
+    label: Ministries Page (Next Steps & FAQs)
+    type: file
+    path: src/data/next-steps.json
+    format: json
+    fields:
+      - { name: intro, label: "Intro statement", type: text }
+      - name: steps
+        label: "Next-step cards"
+        type: object
+        list: true
+        fields:
+          - { name: title, label: Title, type: string }
+          - { name: body, label: Text, type: text }
+          - { name: button_label, label: "Button label", type: string }
+          - { name: button_url, label: "Button link", type: string }
+      - name: faqs
+        label: FAQs
+        type: object
+        list: true
+        fields:
+          - { name: q, label: Question, type: string }
+          - { name: a, label: Answer, type: text }
+
   - name: settings
     label: Site Settings
     type: file

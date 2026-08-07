@@ -116,7 +116,10 @@ const ministries = [
   <!-- Ministries -->
   <section class="bg-white">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 py-16 md:py-20">
-      <SectionHeading eyebrow="Get Connected" title="Our Ministries" />
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <SectionHeading eyebrow="Get Connected" title="Our Ministries" />
+        <a href="/ministries" class="font-bold text-sky hover:underline">All ministries &amp; next steps →</a>
+      </div>
       <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {ministries.map((m) => (
           <a href={m.href} class="reveal group overflow-hidden rounded-2xl bg-cream shadow-sm ring-1 ring-black/5 hover:shadow-xl transition-shadow">

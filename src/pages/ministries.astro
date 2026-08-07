@@ -1,0 +1,102 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import ChurchCenterPromo from '../components/ChurchCenterPromo.astro';
+import next from '../data/next-steps.json';
+
+import heroImg from '../assets/img/uploads/music_main_photo.jpg';
+import preschoolImg from '../assets/img/uploads/preschool_section_one_1_photo.jpg';
+import kidsImg from '../assets/img/uploads/home_ministry_left_graphic.jpg';
+import youthImg from '../assets/img/uploads/home_ministry_right_graphic.jpg';
+import menImg from '../assets/img/uploads/home_ministry_one_graphic.jpg';
+import womenImg from '../assets/img/uploads/home_ministry_two_graphic.jpg';
+import seniorsImg from '../assets/img/uploads/seniors_section_one_photo.jpg';
+import musicImg from '../assets/img/uploads/home_ministry_three_graphic.jpg';
+import missionsImg from '../assets/img/uploads/home_ministry_four_graphic.jpg';
+
+const tiles = [
+  { label: 'Preschool', href: '/preschool', img: preschoolImg },
+  { label: 'Kids', href: '/kids', img: kidsImg },
+  { label: 'Students', href: '/students', img: youthImg },
+  { label: "Men", href: '/men', img: menImg },
+  { label: "Women", href: '/women', img: womenImg },
+  { label: 'Seniors', href: '/seniors', img: seniorsImg },
+  { label: 'Music', href: '/music', img: musicImg },
+  { label: 'Missions', href: '/missions', img: missionsImg },
+];
+---
+<Layout title="Ministries | Hillcrest Baptist Church">
+  <!-- Hero -->
+  <section class="relative isolate overflow-hidden bg-navy-deep text-white">
+    <Image src={heroImg} alt="" class="absolute inset-0 -z-10 h-full w-full object-cover" widths={[768, 1600]} sizes="100vw" loading="eager" />
+    <div class="absolute inset-0 -z-10 bg-gradient-to-b from-ink/80 via-navy-deep/60 to-ink/90"></div>
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 py-24 md:py-36 text-center">
+      <h1 class="font-display text-4xl md:text-6xl font-extrabold tracking-tight">Ministries</h1>
+      <div class="mx-auto mt-5 h-1.5 w-24 rounded bg-gold"></div>
+    </div>
+  </section>
+
+  <!-- Mission intro -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6 py-14 md:py-16 text-center">
+      <p class="font-display text-xl md:text-2xl font-bold text-navy leading-relaxed">{next.intro}</p>
+      <p class="mt-5 text-slate-600">Click through below to see how you can get involved — then take your next step.</p>
+    </div>
+  </section>
+
+  <!-- Ministry tiles -->
+  <section class="bg-white pb-16">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 grid gap-4 grid-cols-2 lg:grid-cols-4">
+      {tiles.map((t) => (
+        <a href={t.href} class="reveal group relative isolate overflow-hidden rounded-2xl aspect-[4/5] flex items-end">
+          <Image src={t.img} alt={t.label} widths={[400, 800]} sizes="(min-width: 1024px) 25vw, 50vw"
+            class="absolute inset-0 -z-10 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+          <div class="absolute inset-0 -z-10 bg-gradient-to-t from-ink/80 via-ink/20 to-transparent"></div>
+          <div class="p-5 w-full">
+            <h2 class="font-display text-xl md:text-2xl font-extrabold text-white">{t.label}</h2>
+            <p class="mt-1 text-sm font-bold text-gold opacity-0 -translate-y-1 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">Explore →</p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Take Your Next Step -->
+  <section class="relative isolate overflow-hidden bg-navy-deep text-white">
+    <div class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,rgba(20,157,204,0.22),transparent_60%)]"></div>
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 py-16 md:py-20 text-center">
+      <SectionHeading eyebrow="Move Closer" title="Take Your Next Step!" light />
+      <div class="mt-10 grid gap-6 md:grid-cols-3 text-left">
+        {next.steps.map((s) => (
+          <div class="reveal flex flex-col rounded-2xl bg-white/5 ring-1 ring-white/10 p-7">
+            <h3 class="font-display text-xl font-bold text-gold">{s.title}</h3>
+            <p class="mt-3 text-white/80 leading-relaxed">{s.body}</p>
+            <a href={s.button_url} target={s.button_url.startsWith('http') ? '_blank' : undefined} rel="noopener"
+              class="mt-auto pt-6"><span class="inline-block rounded-full bg-sky px-6 py-2.5 font-bold text-white hover:bg-sky-bright transition-colors">{s.button_label}</span></a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQs -->
+  <section class="bg-cream">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6 py-16">
+      <SectionHeading eyebrow="Good to Know" title="Common Questions" />
+      <div class="mt-8 space-y-3">
+        {next.faqs.map((f) => (
+          <details class="reveal group rounded-2xl bg-white ring-1 ring-black/5 shadow-sm">
+            <summary class="cursor-pointer list-none px-6 py-4 flex items-center justify-between gap-4">
+              <span class="font-display font-bold text-navy">{f.q}</span>
+              <svg class="h-4 w-4 shrink-0 text-sky transition-transform group-open:rotate-180" viewBox="0 0 16 16" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </summary>
+            <p class="px-6 pb-5 text-slate-700 leading-relaxed">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ChurchCenterPromo />
+</Layout>
