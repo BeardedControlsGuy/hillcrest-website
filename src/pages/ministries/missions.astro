@@ -1,10 +1,10 @@
 ---
-import MinistryPage from '../layouts/MinistryPage.astro';
-import hero from '../assets/img/uploads/missions_main_photo.jpg';
-import s1 from '../assets/img/uploads/missions_section_one_photo.jpg';
+import MinistryPage from '../../layouts/MinistryPage.astro';
+import hero from '../../assets/img/uploads/missions_main_photo.jpg';
+import s1 from '../../assets/img/uploads/missions_section_one_photo.jpg';
 
 const gallery = Object.values(
-  import.meta.glob('../assets/img/uploads/missions_gallery_*.jpg', { eager: true, import: 'default' })
+  import.meta.glob('../../assets/img/uploads/missions_gallery_*.jpg', { eager: true, import: 'default' })
 ) as ImageMetadata[];
 ---
 <MinistryPage

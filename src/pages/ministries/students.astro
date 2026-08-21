@@ -1,13 +1,13 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import SectionHeading from '../components/SectionHeading.astro';
-import Gallery from '../components/Gallery.astro';
+import Layout from '../../layouts/Layout.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import Gallery from '../../components/Gallery.astro';
 import { Image } from 'astro:assets';
-import poster from '../assets/img/uploads/students_video_poster.jpg';
-import s1 from '../assets/img/uploads/students_section_one_photo.jpg';
+import poster from '../../assets/img/uploads/students_video_poster.jpg';
+import s1 from '../../assets/img/uploads/students_section_one_photo.jpg';
 
 const gallery = Object.values(
-  import.meta.glob('../assets/img/uploads/students_gallery_*.jpg', { eager: true, import: 'default' })
+  import.meta.glob('../../assets/img/uploads/students_gallery_*.jpg', { eager: true, import: 'default' })
 ) as ImageMetadata[];
 ---
 <Layout title="Student Ministry | Hillcrest Baptist Church">

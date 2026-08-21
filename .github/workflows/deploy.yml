@@ -2,7 +2,7 @@ name: Deploy to Cloudflare Pages
 
 on:
   push:
-    branches: [main, staging]
+    branches: [main, staging, v2]
   workflow_dispatch:
 
 concurrency:
