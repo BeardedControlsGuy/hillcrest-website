@@ -5,6 +5,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
   group: promote
@@ -29,3 +30,9 @@ jobs:
           git checkout staging
           git merge main -m "Sync live back into staging" || true
           git push origin staging
+      # Pushes made with GITHUB_TOKEN don't trigger the deploy workflow on
+      # their own — dispatch it explicitly (workflow_dispatch is exempt).
+      - name: Trigger production deploy
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run deploy.yml --ref main
