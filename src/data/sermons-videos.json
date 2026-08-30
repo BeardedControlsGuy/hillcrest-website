@@ -1,6 +1,11 @@
 {
-  "synced_at": "2026-08-27",
+  "synced_at": "2026-08-30",
   "videos": [
+    {
+      "id": "i6YgO85QF10",
+      "title": "Sunday Morning Worship | Aug 30, 2026",
+      "published": "2026-08-30T13:25:40+00:00"
+    },
     {
       "id": "K3zbaqSyETU",
       "title": "Wednesday Evening Worship | Aug 26, 2026",
@@ -70,11 +75,6 @@
       "id": "DoqZ9KbXB80",
       "title": "Sunday Evening Worship | Aug 2, 2026",
       "published": "2026-08-03T13:54:24+00:00"
-    },
-    {
-      "id": "32nBGNV9Kks",
-      "title": "Sunday Morning Worship | Aug 2, 2026",
-      "published": "2026-08-03T05:24:02+00:00"
     }
   ]
 }
